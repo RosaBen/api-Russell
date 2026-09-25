@@ -19,15 +19,43 @@ export const createNewUser = async (req, res) => {
     }
 
     const user = await User.create({ username, email, password });
-    return res.status(201).json({ message: "user created" });
-  } catch (error) {
-    console.error(error);
-    return res.status(501).json({
-      message: "server error", user: {
+    return res.status(201).json({
+      message: "user created", user: {
         id: user._id,
         username: user.username,
         email: user.email
       }
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({
+      message: "server error"
+    });
+  }
+};
+
+/**
+ * Get all users
+ *
+ * @async
+ * @route GET/users
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @param {import("express").NextFunction} next 
+ * @returns {Promise} 
+ */
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    if (!users) {
+      return res.status(404).json({ message: "there are no users yet" });
+    }
+
+    return res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({
+      message: "server error"
     });
   }
 };
