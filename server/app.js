@@ -4,6 +4,7 @@ import logger from "morgan";
 import cors from "cors";
 
 import indexRouter from "./routes/index.js";
+import userRouter from "./routes/users.js";
 import { initClientDbConnection } from "./db/mongo.js";
 
 initClientDbConnection();
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api", indexRouter);
+app.use("/api/users", userRouter);
 
 
 app.use(function (req, res, next) {
