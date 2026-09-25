@@ -1,9 +1,38 @@
 import UserForm from "../components/UserForm";
-export default function Register() {
+import { createUser } from "../assets/scripts/fetchApi";
+import { useState } from "react";
+
+export default function Register({ handleChange }) {
+  const [registerForm, setRegisterForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      await createUser(registerForm);
+      console.log("user created");
+      setRegisterForm({
+        username: "",
+        email: "",
+        password: "",
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <>
       <h1>Créer un compte</h1>
-      <UserForm submitText="Créer" />
+      <UserForm
+        submitText="Créer"
+        inputChange={handleChange(setRegisterForm)}
+        submit={handleRegister}
+        form={registerForm}
+      />
     </>
   );
 }
