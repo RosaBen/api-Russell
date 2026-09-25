@@ -59,3 +59,32 @@ export const getAllUsers = async (req, res) => {
     });
   }
 };
+
+/**
+ * Get a user using email as param
+ *
+ * @async
+ * @route GET/users/:email
+ * @param {email} email
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {NextFunction} next 
+ * @returns {Promise} 
+ * @access Private
+ */
+export const getUserByEmail = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email }).select("-password");
+    if (!user) {
+      res.status(404).json({ message: "user not found" });
+    }
+
+    return res.status(200).json(user);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({
+      message: "server error"
+    });
+  }
+};
