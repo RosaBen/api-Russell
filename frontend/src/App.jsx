@@ -2,9 +2,11 @@
 
 // Import pages
 import Register from "./pages/Register";
+import Users from "./pages/Users";
 
 // Styles-scripts
 import "./assets/styles/app.css";
+import "./assets/styles/users.css";
 import "./assets/styles/userform.css";
 
 function App() {
@@ -16,8 +18,9 @@ function App() {
   };
   return (
     <div className="container">
-      <main className="register">
-        <Register handleChange={handleChange} />
+      <main className="register users">
+        {/* <Register handleChange={handleChange} /> */}
+        <Users />
       </main>
     </div>
   );
