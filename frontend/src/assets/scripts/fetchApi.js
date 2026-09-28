@@ -45,6 +45,13 @@ export async function getAllUsers () {
   return data;
 }
 
+/**
+ * get a user by email
+ *
+ * @export
+ * @async
+ * @returns {Promise} 
+ */
 export async function getUser (email) {
   const response = await fetch(`${API_URL}/users/${email}`, {
     method: "GET",
@@ -55,4 +62,21 @@ export async function getUser (email) {
     throw new Error(data.message);
   }
   return data;
+}
+
+
+export async function editUser (email, user) {
+  const response = await fetch(`${API_URL}/users/${email}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(user)
+  });
+  if (!response.ok) {
+    throw new Error("unable to edit user");
+  }
+
+  return response.json();
 }

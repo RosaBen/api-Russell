@@ -1,13 +1,4 @@
-.users h1 {
-  margin-bottom: 1rem;
-}
-
-.users {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.users .user-card {
+.user-card {
   width: 300px;
   place-items: center;
   border: 2px solid var(--bg-color);
@@ -18,31 +9,42 @@
   gap: 1rem;
 }
 
-.users .user-card p:nth-child(1) {
+.user-card p:nth-child(1) {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
 }
 
-.users .user-card .btns {
+.user-card .btns {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
   width: 300px;
   padding: 0 1rem;
 }
 
-.users .user-card button {
+.user-card button {
   padding: 0.5rem 0.8rem;
   border-radius: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: white;
 }
 
-.users .user-card button:nth-child(1) {
-  background: var(--bg-color);
+.btns > button:nth-child(1) {
+  background: blue;
 }
 
-.users .user-card button:nth-child(2) {
+.edit-del-btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-del-btns button:nth-child(1) {
+  background: orange;
+}
+
+.edit-del-btns button:nth-child(2) {
   background: red;
 }

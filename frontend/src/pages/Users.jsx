@@ -5,19 +5,19 @@ import UserCard from "../components/UserCard";
 export default function Users() {
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [users, setUsers] = useState([]);
-  useEffect(() => {
-    async function fetchUsers() {
-      setLoadingUsers(true);
-      try {
-        const data = await getAllUsers();
-        setUsers(data);
-      } catch (error) {
-        console.error(error.message);
-        setUsers([]);
-      } finally {
-        setLoadingUsers(false);
-      }
+  async function fetchUsers() {
+    setLoadingUsers(true);
+    try {
+      const data = await getAllUsers();
+      setUsers(data);
+    } catch (error) {
+      console.error(error.message);
+      setUsers([]);
+    } finally {
+      setLoadingUsers(false);
     }
+  }
+  useEffect(() => {
     fetchUsers();
   }, []);
 

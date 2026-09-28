@@ -29,7 +29,7 @@ function App() {
           element={<Register handleChange={handleChange} />}
         />
         <Route path="/users" element={<Users />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/user" element={<User handleChange={handleChange} />} />
       </Routes>
     </div>
   );
