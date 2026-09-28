@@ -11,15 +11,15 @@ initClientDbConnection();
 
 const app = express();
 
-// app.use(cors({
-//   origin: "http://localhost:5173",
-//   credentials: true
-// }));
-
 app.use(cors({
-  exposedHeaders: ["Authorization"],
-  origin: "*"
+  origin: "http://localhost:5173",
+  credentials: true
 }));
+
+// app.use(cors({
+//   exposedHeaders: ["Authorization"],
+//   origin: "*"
+// }));
 
 app.use(logger('dev'));
 app.use(express.json());
