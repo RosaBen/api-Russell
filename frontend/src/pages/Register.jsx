@@ -25,7 +25,7 @@ export default function Register({ handleChange }) {
   };
 
   return (
-    <main>
+    <>
       <h1>Créer un compte</h1>
       <UserForm
         submitText="Créer"
@@ -33,6 +33,6 @@ export default function Register({ handleChange }) {
         submit={handleRegister}
         form={registerForm}
       />
-    </main>
+    </>
   );
 }
