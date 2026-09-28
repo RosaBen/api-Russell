@@ -76,7 +76,7 @@ export default function User({ handleChange }) {
     return <p>Chargement ...</p>;
   }
   return (
-    <>
+    <main>
       <h1>Information sur l'utilisateur</h1>
       <UserCard
         user={user}
@@ -88,6 +88,6 @@ export default function User({ handleChange }) {
         editForm={editForm}
         handleDelete={handleDelete}
       />
-    </>
+    </main>
   );
 }

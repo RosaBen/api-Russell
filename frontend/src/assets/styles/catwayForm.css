@@ -1,0 +1,49 @@
+.catway-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.catway-form label {
+  font-weight: 700;
+}
+
+.catway-form > label:nth-child(1),
+.catway-form .radio-btns,
+.catway-form > label:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.catway-form input,
+.catway-form textarea {
+  background: var(--form-color);
+  padding: 0.5rem;
+}
+
+.catway-form input {
+  width: 60px;
+  border-radius: 0.5rem;
+}
+
+.catway-form textarea {
+  width: 250px;
+  height: 200px;
+}
+
+.catway-form input:focus,
+.catway-form textarea:focus {
+  box-shadow: none;
+  outline-color: var(--bg-color);
+}
+
+.catway-form button[type="submit"] {
+  background: var(--bg-color);
+  padding: 0.5rem 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 0.5rem;
+}

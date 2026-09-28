@@ -1,21 +1,23 @@
 import { useState } from "react";
 import CatwayForm from "../components/CatwayForm";
+import CatwayCard from "../components/CatwayCard";
 import { createCatway } from "../assets/scripts/fetchApi";
 export default function Catways({ handleChange }) {
+  const [catways, setCatways] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [catwayForm, setCatwayForm] = useState({
     catwayNumber: "",
     catwayType: "",
-    catwayState: "",
+    catwayState: "Bon état",
   });
 
   const handleCreateCatway = async (e) => {
     e.preventDefault();
     try {
-      console.log("1", catwayForm);
-      await createCatway(catwayForm);
-      console.log("2", catwayForm);
+      const newCatway = await createCatway(catwayForm);
       console.log("catway created");
+      setCatways((prev) => [newCatway, ...prev]);
+      console.log(newCatway);
       setCatwayForm({
         catwayNumber: "",
         catwayType: "",
@@ -26,10 +28,18 @@ export default function Catways({ handleChange }) {
       console.error(error.message);
     }
   };
+
+  const catwaysList = catways.map((catway) => (
+    <CatwayCard catway={catway} key={catway.catway.id} />
+  ));
   return (
-    <>
+    <main>
       <h1>Liste des pontons</h1>
-      <button onClick={() => setShowForm(true)}>Ajouter un ponton</button>
+      {!showForm && (
+        <button onClick={() => setShowForm(true)} className="create-catway-btn">
+          Ajouter un ponton
+        </button>
+      )}
       {showForm && (
         <div className="catway-form-modal">
           <CatwayForm
@@ -41,6 +51,8 @@ export default function Catways({ handleChange }) {
           <button onClick={() => setShowForm(false)}>X</button>
         </div>
       )}
-    </>
+
+      <div className="catways-list">{catwaysList}</div>
+    </main>
   );
 }

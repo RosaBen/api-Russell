@@ -29,9 +29,9 @@ export default function Users() {
     <UserCard user={user} key={user._id || user.email} />
   ));
   return (
-    <>
+    <main>
       <h1>Utilisateurs</h1>
       <div className="users-list">{usersList}</div>
-    </>
+    </main>
   );
 }

@@ -15,7 +15,7 @@ export const createNewCatway = async (req, res) => {
   try {
     const existingNumber = await Catway.findOne({ catwayNumber: req.params.id });
     if (existingNumber) {
-      return res.status(400).json({ message: "this catway number exist already" });
+      return res.status(409).json({ message: "this catway number exist already" });
     }
     const catway = await Catway.create({ catwayNumber, catwayType, catwayState });
     return res.status(201).json({

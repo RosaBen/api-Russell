@@ -131,8 +131,17 @@ export async function createCatway (catway) {
     body: JSON.stringify(catway)
   });
   if (!response.ok) {
-    throw new Error("unable to create a new catway");
+    const error = await response.json();
+    throw new Error(error.message);
   }
 
   return response.json();
 }
+
+/**
+ * get all catways
+ *
+ * @export
+ * @async
+ * @returns {Promise} 
+ */

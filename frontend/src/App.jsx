@@ -18,6 +18,8 @@ import "./assets/styles/app.css";
 import "./assets/styles/header.css";
 import "./assets/styles/users.css";
 import "./assets/styles/userform.css";
+import "./assets/styles/catways.css";
+import "./assets/styles/catwayForm.css";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
