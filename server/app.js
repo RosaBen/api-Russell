@@ -5,6 +5,7 @@ import cors from "cors";
 
 import indexRouter from "./routes/index.js";
 import userRouter from "./routes/users.js";
+import catwayRouter from "./routes/catways.js";
 import { initClientDbConnection } from "./db/mongo.js";
 
 initClientDbConnection();
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 app.use("/api", indexRouter);
 app.use("/api/users", userRouter);
+app.use("/api/catways", catwayRouter);
 
 
 app.use(function (req, res, next) {

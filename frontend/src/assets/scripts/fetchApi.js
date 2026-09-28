@@ -1,5 +1,7 @@
 const API_URL = "http://localhost:3000/api";
 
+
+// USERS
 /**
  * Create a user
  *
@@ -104,6 +106,32 @@ export async function deleteUser (email) {
   });
   if (!response.ok) {
     throw new Error("unable to delete user");
+  }
+
+  return response.json();
+}
+
+// CATWAYS
+
+/**
+ * Create a user
+ *
+ * @export
+ * @async
+ * @param {FormData} catway 
+ * @returns {Promise} 
+ */
+export async function createCatway (catway) {
+  const response = await fetch(`${API_URL}/catways`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(catway)
+  });
+  if (!response.ok) {
+    throw new Error("unable to create a new catway");
   }
 
   return response.json();
