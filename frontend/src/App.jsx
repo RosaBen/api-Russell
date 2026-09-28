@@ -6,9 +6,15 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Users from "./pages/Users";
 import User from "./pages/User";
+import Catways from "./pages/Catways";
+
+// Import Components
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Styles-scripts
 import "./assets/styles/app.css";
+import "./assets/styles/header.css";
 import "./assets/styles/users.css";
 import "./assets/styles/userform.css";
 
@@ -22,6 +28,7 @@ function App() {
 
   return (
     <div className="container">
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -30,7 +37,9 @@ function App() {
         />
         <Route path="/users" element={<Users />} />
         <Route path="/user" element={<User handleChange={handleChange} />} />
+        <Route path="/catways" element={<Catways />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
