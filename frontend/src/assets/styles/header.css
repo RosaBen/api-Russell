@@ -9,6 +9,7 @@ header {
   justify-content: space-around;
   border-bottom: 0.5rem solid var(--text-color);
   position: relative;
+  z-index: 3;
 }
 
 header > button {
@@ -25,13 +26,14 @@ header .icon {
 
 .modal-menu {
   position: absolute;
-  bottom: -9.1rem;
+  bottom: -11.45rem;
   background: white;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  z-index: 2;
 }
 
 .modal-menu > button {
@@ -49,12 +51,17 @@ header .icon {
   gap: 1rem;
 }
 
-/* .modal-overlay {
+main {
+  position: relative;
+  z-index: 0;
+}
+
+.modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-} */
+  z-index: 1;
+}
 
 /* Footer */
 

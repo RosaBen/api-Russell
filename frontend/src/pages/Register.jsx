@@ -25,7 +25,7 @@ export default function Register({ handleChange }) {
   };
 
   return (
-    <main className="register">
+    <main>
       <h1>Créer un compte</h1>
       <UserForm
         submitText="Créer"

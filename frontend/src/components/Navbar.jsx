@@ -12,6 +12,14 @@ export default function Navbar({ classDesktop, onClick }) {
         Accueil
       </Link>
       <Link
+        to="/register"
+        // target="_blank"
+        // rel="noopener noreferrer"
+        onClick={onClick}
+      >
+        Créer un utilisateur
+      </Link>
+      <Link
         to="/users"
         // target="_blank"
         // rel="noopener noreferrer"
