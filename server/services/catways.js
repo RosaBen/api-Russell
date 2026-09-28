@@ -47,7 +47,7 @@ export const createNewCatway = async (req, res) => {
  */
 export const getAllCatways = async (req, res) => {
   try {
-    const catways = await Catway.find();
+    const catways = await Catway.find().sort({ createdAt: -1 });
     if (!catways) {
       return res.status(404).json({ message: "there are no catways created yet" });
     }

@@ -145,3 +145,17 @@ export async function createCatway (catway) {
  * @async
  * @returns {Promise} 
  */
+export async function getAllCatways () {
+  const response = await fetch(`${API_URL}/catways`, {
+    method: "get",
+    credentials: "include"
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
+  return data;
+}

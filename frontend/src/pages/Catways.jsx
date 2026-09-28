@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CatwayForm from "../components/CatwayForm";
 import CatwayCard from "../components/CatwayCard";
-import { createCatway } from "../assets/scripts/fetchApi";
+import { createCatway, getAllCatways } from "../assets/scripts/fetchApi";
 export default function Catways({ handleChange }) {
   const [catways, setCatways] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [loadingCatways, setLoadingCatways] = useState(true);
   const [catwayForm, setCatwayForm] = useState({
     catwayNumber: "",
     catwayType: "",
     catwayState: "Bon état",
   });
+
+  async function fetchCatways() {
+    setLoadingCatways(true);
+    try {
+      const data = await getAllCatways();
+      setCatways(data);
+    } catch (error) {
+      console.error(error.message);
+      setCatways([]);
+    } finally {
+      setLoadingCatways(false);
+    }
+  }
 
   const handleCreateCatway = async (e) => {
     e.preventDefault();
@@ -17,7 +31,7 @@ export default function Catways({ handleChange }) {
       const newCatway = await createCatway(catwayForm);
       console.log("catway created");
       setCatways((prev) => [newCatway, ...prev]);
-      console.log(newCatway);
+      fetchCatways();
       setCatwayForm({
         catwayNumber: "",
         catwayType: "",
@@ -29,9 +43,17 @@ export default function Catways({ handleChange }) {
     }
   };
 
+  useEffect(() => {
+    fetchCatways();
+  }, []);
+
   const catwaysList = catways.map((catway) => (
-    <CatwayCard catway={catway} key={catway.catway.id} />
+    <CatwayCard catway={catway} key={catway.id || catway._id} />
   ));
+
+  if (loadingCatways) {
+    return <p>Chargement ...</p>;
+  }
   return (
     <main>
       <h1>Liste des pontons</h1>

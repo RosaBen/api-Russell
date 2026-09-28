@@ -1,11 +1,11 @@
 export default function CatwayCard({ catway }) {
   return (
     <article className="catway-card">
-      <p>{`Ponton ${catway.catway.catwayNumber}`}</p>
+      <p>{`Ponton ${catway.catwayNumber}`}</p>
       <p>
-        Longueur: <span>{` ${catway.catway.catwayType}`}</span>
+        Longueur: <span>{` ${catway.catwayType}`}</span>
       </p>
-      <p>{catway.catway.catwayState}</p>
+      <p>{catway.catwayState}</p>
     </article>
   );
 }
