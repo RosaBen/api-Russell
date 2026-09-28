@@ -114,7 +114,7 @@ export async function deleteUser (email) {
 // CATWAYS
 
 /**
- * Create a user
+ * Create a catway
  *
  * @export
  * @async

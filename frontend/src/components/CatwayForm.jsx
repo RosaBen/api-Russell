@@ -4,32 +4,46 @@ export default function CatwayForm({ submitText, inputChange, submit, form }) {
       <label>
         Numéro du ponton{" "}
         <input
-          type="text"
-          name="catwaynumber"
-          value={form.catwaynumber}
+          type="number"
+          name="catwayNumber"
+          value={form.catwayNumber}
           onChange={inputChange}
-          placeholder="01Cat"
+          placeholder="125"
           required
         />
       </label>
 
       <div className="radio-btns">
         <label>
-          <input type="radio" name="catwaytype" value="long" />
+          <input
+            type="radio"
+            name="catwayType"
+            value="long"
+            checked={form.catwayType === "long"}
+            onChange={inputChange}
+          />
           Ponton long
         </label>
         <label>
-          <input type="radio" name="catwaytype" value="short" />
+          <input
+            type="radio"
+            name="catwayType"
+            value="short"
+            checked={form.catwayType === "short"}
+            onChange={inputChange}
+          />
           Ponton Court
         </label>
       </div>
 
       <label htmlFor="catwaystate">
-        Etat du ponton{" "}
+        Etat du ponton
         <textarea
-          name="catwaystate"
+          name="catwayState"
           id="catwaystate"
           placeholder="bon etat?"
+          value={form.catwayState}
+          onChange={inputChange}
         ></textarea>
       </label>
 

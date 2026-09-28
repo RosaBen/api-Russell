@@ -41,7 +41,10 @@ function App() {
           />
           <Route path="/users" element={<Users />} />
           <Route path="/user" element={<User handleChange={handleChange} />} />
-          <Route path="/catways" element={<Catways />} />
+          <Route
+            path="/catways"
+            element={<Catways handleChange={handleChange} />}
+          />
         </Routes>
       </main>
       <Footer />
