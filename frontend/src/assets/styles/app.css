@@ -30,3 +30,8 @@ a {
   font-weight: 700;
   letter-spacing: 1px;
 }
+
+a:hover,
+button:hover {
+  opacity: 0.5;
+}

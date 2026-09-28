@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-export default function Navbar({ classDesktop }) {
+export default function Navbar({ classDesktop, onClick }) {
   return (
     <nav className={classDesktop}>
       <Link
         to="/"
         // target="_blank"
         // rel="noopener noreferrer"
+        onClick={onClick}
       >
         Accueil
       </Link>
@@ -14,6 +15,7 @@ export default function Navbar({ classDesktop }) {
         to="/users"
         // target="_blank"
         // rel="noopener noreferrer"
+        onClick={onClick}
       >
         Utilisateurs
       </Link>
@@ -21,6 +23,7 @@ export default function Navbar({ classDesktop }) {
         to="/catways"
         // target="_blank"
         // rel="noopener noreferrer"
+        onClick={onClick}
       >
         Pontons
       </Link>
