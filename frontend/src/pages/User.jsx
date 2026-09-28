@@ -40,11 +40,8 @@ export default function User({ handleChange }) {
     e.preventDefault();
     try {
       const currentEmail = email;
-      console.log(currentEmail);
       await editUser(currentEmail, editForm);
-      console.log(editForm);
       const nextEmail = editForm.email?.trim() || currentEmail;
-      console.log(nextEmail);
       if (nextEmail !== currentEmail) {
         sessionStorage.setItem("selectedUser", nextEmail);
         setEmail(nextEmail);
