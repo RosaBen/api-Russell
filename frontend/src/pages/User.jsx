@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getUser, editUser } from "../assets/scripts/fetchApi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getUser, editUser, deleteUser } from "../assets/scripts/fetchApi";
 import UserCard from "../components/UserCard";
 
 export default function User({ handleChange }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [email, setEmail] = useState(
@@ -59,6 +60,18 @@ export default function User({ handleChange }) {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await deleteUser(email);
+      sessionStorage.removeItem("selectedUser");
+      navigate("/users");
+      console.log("user deleted");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchUser();
   }, [email]);
@@ -76,6 +89,7 @@ export default function User({ handleChange }) {
         handleEdit={handleEdit}
         handleChange={handleChange}
         editForm={editForm}
+        handleDelete={handleDelete}
       />
     </main>
   );

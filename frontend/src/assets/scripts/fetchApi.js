@@ -49,6 +49,7 @@ export async function getAllUsers () {
  * get a user by email
  *
  * @export
+ * @param {email}
  * @async
  * @returns {Promise} 
  */
@@ -64,7 +65,14 @@ export async function getUser (email) {
   return data;
 }
 
-
+/**
+ * edit a user 
+ *
+ * @export
+ * @param {email, userdata}
+ * @async
+ * @returns {Promise} 
+ */
 export async function editUser (email, user) {
   const response = await fetch(`${API_URL}/users/${email}`, {
     method: "put",
@@ -76,6 +84,26 @@ export async function editUser (email, user) {
   });
   if (!response.ok) {
     throw new Error("unable to edit user");
+  }
+
+  return response.json();
+}
+
+/**
+ * delete a user 
+ *
+ * @export
+ * @param {email}
+ * @async
+ * @returns {Promise} 
+ */
+export async function deleteUser (email) {
+  const response = await fetch(`${API_URL}/users/${email}`, {
+    method: "delete",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("unable to delete user");
   }
 
   return response.json();

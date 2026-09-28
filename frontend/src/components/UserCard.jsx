@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserForm from "./UserForm";
 
@@ -10,6 +9,7 @@ export default function UserCard({
   setEditForm,
   handleEdit,
   editForm,
+  handleDelete,
 }) {
   if (!user) return null;
   const navigate = useNavigate();
@@ -40,7 +40,9 @@ export default function UserCard({
             <button className="edit-btn" onClick={handleShowForm}>
               Modifier
             </button>
-            <button className="delete-btn">Supprimer</button>
+            <button className="delete-btn" onClick={handleDelete}>
+              Supprimer
+            </button>
           </div>
         )}
       </div>
