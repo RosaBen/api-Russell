@@ -72,6 +72,7 @@ export default function User({ handleChange }) {
   useEffect(() => {
     fetchUser();
   }, [email]);
+
   if (loadingUser) {
     return <p>Chargement ...</p>;
   }

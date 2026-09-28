@@ -60,6 +60,17 @@ main .create-catway-btn {
   font-weight: 300;
 }
 
-.catway-card p:nth-child(3) {
+.catways-list .catway-card p:nth-child(3) {
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catway-card button {
+  padding: 0.5rem;
+  border-radius: 2rem;
+  background: white;
+  text-transform: uppercase;
+  font-weight: bold;
 }

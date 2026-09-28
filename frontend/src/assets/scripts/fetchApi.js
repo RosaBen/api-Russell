@@ -159,3 +159,26 @@ export async function getAllCatways () {
 
   return data;
 }
+
+/**
+ * get a catway with catwayNumber
+ *
+ * @export
+ * @param {catwayNumber}catwayNumber
+ * @async
+ * @returns {Promise} 
+ */
+
+export async function getCatway (catwayNumber) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}`, {
+    method: "get",
+    credentials: "include"
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+  return data;
+}

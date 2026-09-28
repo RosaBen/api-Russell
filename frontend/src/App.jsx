@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Users from "./pages/Users";
 import User from "./pages/User";
 import Catways from "./pages/Catways";
+import Catway from "./pages/Catway";
 
 // Import Components
 import Header from "./components/Header";
@@ -46,6 +47,10 @@ function App() {
           <Route
             path="/catways"
             element={<Catways handleChange={handleChange} />}
+          />
+          <Route
+            path="/catway"
+            element={<Catway handleChange={handleChange} />}
           />
         </Routes>
       </main>

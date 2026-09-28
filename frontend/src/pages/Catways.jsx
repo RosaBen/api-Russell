@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CatwayForm from "../components/CatwayForm";
 import CatwayCard from "../components/CatwayCard";
 import { createCatway, getAllCatways } from "../assets/scripts/fetchApi";
+
 export default function Catways({ handleChange }) {
   const [catways, setCatways] = useState([]);
   const [showForm, setShowForm] = useState(false);
