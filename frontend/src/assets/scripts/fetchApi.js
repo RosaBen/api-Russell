@@ -44,3 +44,15 @@ export async function getAllUsers () {
 
   return data;
 }
+
+export async function getUser (email) {
+  const response = await fetch(`${API_URL}/users/${email}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
+  return data;
+}
