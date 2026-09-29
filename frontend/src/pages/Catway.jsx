@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getCatway } from "../assets/scripts/fetchApi";
+import { useLocation, Link } from "react-router-dom";
+import { getCatway, EditCatway } from "../assets/scripts/fetchApi";
 import CatwayCard from "../components/CatwayCard";
 
 export default function Catway({ handleChange }) {
   const [catway, setCatway] = useState(null);
   const [loadingCatway, setloadingCatway] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [editForm, setEditForm] = useState({
+    catwayNumber: "",
+    catwayType: "",
+    catwayState: "Bon état",
+  });
   const location = useLocation();
   const [catwayNumber, setCatwayNumber] = useState(
     () =>
@@ -34,6 +40,26 @@ export default function Catway({ handleChange }) {
     }
   }
 
+  const handleEditCatway = async (e) => {
+    e.preventDefault();
+    try {
+      const currentCatwayNumber = catwayNumber;
+      await EditCatway(currentCatwayNumber, editForm);
+      const nextNumber = editForm.catwayNumber || currentCatwayNumber;
+      if (nextNumber !== currentCatwayNumber) {
+        sessionStorage.setItem("selectedCatway", nextNumber);
+        setCatwayNumber(nextNumber);
+      } else {
+        const newData = await getCatway(currentCatwayNumber);
+        setCatway(newData);
+        console.log("catway edited");
+      }
+      setShowForm(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchCatway();
   }, [catwayNumber]);
@@ -44,7 +70,21 @@ export default function Catway({ handleChange }) {
   return (
     <main>
       <h1>Information sur le ponton</h1>
-      <CatwayCard catway={catway} handleChange={handleChange} />
+      <CatwayCard
+        catway={catway}
+        handleChange={handleChange}
+        showForm={showForm}
+        setShowForm={setShowForm}
+        handleEdit={handleEditCatway}
+        editForm={editForm}
+        setEditForm={setEditForm}
+      />
+      <Link
+        to="/catways"
+        // target="_blank" rel="noopener noreferrer"
+      >
+        Retour à la liste de pontons
+      </Link>
     </main>
   );
 }

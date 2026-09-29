@@ -8,6 +8,19 @@ main .create-catway-btn {
   margin-bottom: 4rem;
 }
 
+main h1 {
+  text-align: center;
+  width: 250px;
+}
+
+main > a {
+  margin-top: 3rem;
+  background: var(--bg-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--btn-color);
+}
+
 .catway-form-modal {
   width: 300px;
   display: flex;

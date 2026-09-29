@@ -168,7 +168,6 @@ export async function getAllCatways () {
  * @async
  * @returns {Promise} 
  */
-
 export async function getCatway (catwayNumber) {
   const response = await fetch(`${API_URL}/catways/${catwayNumber}`, {
     method: "get",
@@ -181,4 +180,29 @@ export async function getCatway (catwayNumber) {
     throw new Error(error.message);
   }
   return data;
+}
+
+/**
+ * edit a catway
+ *
+ * @export
+ * @param {catwayNumber, catwaydata}
+ * @async
+ * @returns {Promise} 
+ */
+export async function EditCatway (catwayNumber, catway) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(catway)
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
+  return response.json();
 }
