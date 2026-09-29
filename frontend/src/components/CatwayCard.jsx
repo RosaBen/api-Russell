@@ -27,11 +27,13 @@ export default function CatwayCard({
 
   return (
     <article className="catway-card">
-      <p>{`Ponton ${catway.catwayNumber}`}</p>
-      <p>
-        Longueur: <span>{` ${catway.catwayType}`}</span>
-      </p>
-      <p>{catway.catwayState}</p>
+      <div className="catway-infos">
+        <p>{`Ponton ${catway.catwayNumber}`}</p>
+        <p>
+          Longueur: <span>{` ${catway.catwayType}`}</span>
+        </p>
+        <p>{catway.catwayState}</p>
+      </div>
 
       <div className="btns">
         {isCatwaysPage && (

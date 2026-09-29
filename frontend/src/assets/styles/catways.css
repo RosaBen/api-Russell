@@ -59,21 +59,27 @@ main > a {
   box-shadow: var(--box-shadow);
 }
 
-.catway-card p:nth-child(1) {
+.catway-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.catway-infos p:nth-child(1) {
   text-align: center;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-.catway-card p:nth-child(2) {
+.catway-infos p:nth-child(2) {
   font-weight: bold;
 }
 
-.catway-card p:nth-child(2) span {
+.catway-infos p:nth-child(2) span {
   font-weight: 300;
 }
 
-.catways-list .catway-card p:nth-child(3) {
+.catways-list .catway-infos p:nth-child(3) {
   line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
@@ -81,9 +87,14 @@ main > a {
 }
 
 .catway-card button {
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 2rem;
-  background: white;
   text-transform: uppercase;
   font-weight: bold;
+  color: white;
+}
+
+.catway-card .btns {
+  display: flex;
+  flex-direction: column;
 }
