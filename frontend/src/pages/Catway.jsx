@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { getCatway, EditCatway } from "../assets/scripts/fetchApi";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import {
+  getCatway,
+  EditCatway,
+  deleteCatway,
+} from "../assets/scripts/fetchApi";
 import CatwayCard from "../components/CatwayCard";
 
 export default function Catway({ handleChange }) {
@@ -13,6 +17,7 @@ export default function Catway({ handleChange }) {
     catwayState: "Bon état",
   });
   const location = useLocation();
+  const navigate = useNavigate();
   const [catwayNumber, setCatwayNumber] = useState(
     () =>
       location.state?.catwayNumber ||
@@ -60,6 +65,18 @@ export default function Catway({ handleChange }) {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      await deleteCatway(catwayNumber);
+      sessionStorage.removeItem("selectedCatway");
+      navigate("/catways");
+      console.log("catway deleted");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchCatway();
   }, [catwayNumber]);
@@ -78,6 +95,7 @@ export default function Catway({ handleChange }) {
         handleEdit={handleEditCatway}
         editForm={editForm}
         setEditForm={setEditForm}
+        handleDelete={handleDelete}
       />
       <Link
         to="/catways"

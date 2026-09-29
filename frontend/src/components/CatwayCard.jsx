@@ -9,6 +9,7 @@ export default function CatwayCard({
   handleEdit,
   editForm,
   setEditForm,
+  handleDelete,
 }) {
   if (!catway) return null;
   const location = useLocation();
@@ -41,9 +42,9 @@ export default function CatwayCard({
             <button className="edit-btn" onClick={() => setShowForm(true)}>
               Modifier
             </button>
-            {/* <button className="delete-btn" onClick={handleDelete}>
+            <button className="delete-btn" onClick={handleDelete}>
               Supprimer
-            </button> */}
+            </button>
           </div>
         )}
       </div>

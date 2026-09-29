@@ -206,3 +206,23 @@ export async function EditCatway (catwayNumber, catway) {
 
   return response.json();
 }
+
+/**
+ * delete a catway
+ *
+ * @export
+ * @param {catwayNumber}
+ * @async
+ * @returns {Promise} 
+ */
+export async function deleteCatway (catwayNumber) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}`, {
+    method: "delete",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("unable to delete catway");
+  }
+
+  return response.json();
+}
