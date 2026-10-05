@@ -2,6 +2,7 @@ import Reservation from "../models/Reservation.js";
 import Catway from "../models/Catway.js";
 
 
+
 /**
  * find the catwayNumber
  *
@@ -78,6 +79,48 @@ export const getCatwayReservationByID = async (req, res) => {
       });
     }
     return res.status(200).json(reservation);
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({ message: "server error" });
+  }
+};
+
+/**
+ * Regsiter a new reservation for teh selected Catway
+ *
+ * @async
+ * @route POST/catways/:id/reservations
+ * @param {id} catwayNumber
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {NextFunction} next 
+ * @returns {Promise} 
+ */
+export const createNewCatwayReservation = async (req, res) => {
+  const { clientName, boatName, startDate, endDate } = req.body;
+  try {
+    const { id } = req.params;
+    const catway = await findCatwayNumber(id);
+    const existingReservation = await Reservation.findOne({ catwayNumber: catway.catwayNumber, startDate: { $lt: endDate }, endDate: { $gt: startDate } });
+    if (existingReservation) {
+      return res.status(400).json({
+        message: `this catway ${catway.catwayNumber} is already booked for this timeperiod`
+      });
+    } else {
+      const reservation = await Reservation.create({ catwayNumber: catway.catwayNumber, clientName, boatName, startDate, endDate });
+      return res.status(201).json({
+        message: "catway created",
+        reservation: {
+          id: reservation._id,
+          catwayNumber: reservation.catwayNumber,
+          clientName: reservation.clientName,
+          boatName: reservation.boatName,
+          startDate: reservation.startDate,
+          endDate: reservation.endDate
+        }
+      });
+    }
+
   } catch (error) {
     console.error(error);
     return res.status(501).json({ message: "server error" });
