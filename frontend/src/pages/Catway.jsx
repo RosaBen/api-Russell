@@ -4,7 +4,7 @@ import {
   getCatway,
   EditCatway,
   deleteCatway,
-} from "../assets/scripts/fetchApi";
+} from "../assets/scripts/fetchCatways";
 import CatwayCard from "../components/CatwayCard";
 
 export default function Catway({ handleChange }) {

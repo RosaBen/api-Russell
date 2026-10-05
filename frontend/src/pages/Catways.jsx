@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CatwayForm from "../components/CatwayForm";
 import CatwayCard from "../components/CatwayCard";
-import { createCatway, getAllCatways } from "../assets/scripts/fetchApi";
+import { createCatway, getAllCatways } from "../assets/scripts/fetchCatways";
 
 export default function Catways({ handleChange }) {
   const [catways, setCatways] = useState([]);

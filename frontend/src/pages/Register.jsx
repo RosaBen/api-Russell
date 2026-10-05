@@ -1,5 +1,5 @@
 import UserForm from "../components/UserForm";
-import { createUser } from "../assets/scripts/fetchApi";
+import { createUser } from "../assets/scripts/fetchUsers";
 import { useState } from "react";
 
 export default function Register({ handleChange }) {

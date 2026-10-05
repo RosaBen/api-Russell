@@ -9,6 +9,7 @@ import Users from "./pages/Users";
 import User from "./pages/User";
 import Catways from "./pages/Catways";
 import Catway from "./pages/Catway";
+import Bookings from "./pages/Bookings";
 
 // Import Components
 import Header from "./components/Header";
@@ -21,6 +22,7 @@ import "./assets/styles/users.css";
 import "./assets/styles/userform.css";
 import "./assets/styles/catways.css";
 import "./assets/styles/catwayForm.css";
+import "./assets/styles/bookings.css";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -51,6 +53,10 @@ function App() {
           <Route
             path="/catway"
             element={<Catway handleChange={handleChange} />}
+          />
+          <Route
+            path="/reservations"
+            element={<Bookings handleChange={handleChange} />}
           />
         </Routes>
       </main>
