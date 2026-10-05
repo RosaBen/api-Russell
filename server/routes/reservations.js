@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { getCatwayReservations, getCatwayReservationByID } from "../services/reservations.js";
+import { getAllReservations, getReservationById } from "../services/reservations.js";
 
-const router = Router({ mergeParams: true });
+const router = Router();
 
-router.get("/", getCatwayReservations);
-router.get("/:idReservation", getCatwayReservationByID);
+router.get("/", getAllReservations);
+router.get("/:id", getReservationById);
+
 
 export default router;
