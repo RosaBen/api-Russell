@@ -18,7 +18,6 @@ export async function getAllBookings () {
   });
 
   const data = await response.json();
-  console.log(data);
   if (!response.ok) {
     const error = await response.json();
     throw new Error(error.message);
@@ -49,4 +48,30 @@ export async function getBooking (catwayNumber, id) {
     throw new Error(error.message);
   }
   return data;
+}
+
+/**
+ * Create a booking
+ *
+ * @export
+ * @async
+ * @param {catwayNumber}catwayNumber
+ * @param {FormData} booking 
+ * @returns {Promise} 
+ */
+export async function createBooking (booking, catwayNumber) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}/reservations`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(booking)
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+  return response.json();
 }

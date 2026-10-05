@@ -3,28 +3,19 @@ import CatwayForm from "../components/CatwayForm";
 import CatwayCard from "../components/CatwayCard";
 import { createCatway, getAllCatways } from "../assets/scripts/fetchCatways";
 
-export default function Catways({ handleChange }) {
-  const [catways, setCatways] = useState([]);
+export default function Catways({
+  handleChange,
+  catways,
+  setCatways,
+  loadingCatways,
+  fetchCatways,
+}) {
   const [showForm, setShowForm] = useState(false);
-  const [loadingCatways, setLoadingCatways] = useState(true);
   const [catwayForm, setCatwayForm] = useState({
     catwayNumber: "",
     catwayType: "",
     catwayState: "Bon état",
   });
-
-  async function fetchCatways() {
-    setLoadingCatways(true);
-    try {
-      const data = await getAllCatways();
-      setCatways(data);
-    } catch (error) {
-      console.error(error.message);
-      setCatways([]);
-    } finally {
-      setLoadingCatways(false);
-    }
-  }
 
   const handleCreateCatway = async (e) => {
     e.preventDefault();

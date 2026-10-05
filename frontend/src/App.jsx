@@ -24,15 +24,31 @@ import "./assets/styles/userform.css";
 import "./assets/styles/catways.css";
 import "./assets/styles/catwayForm.css";
 import "./assets/styles/bookings.css";
+import { getAllCatways } from "./assets/scripts/fetchCatways";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
+  const [catways, setCatways] = useState([]);
+  const [loadingCatways, setLoadingCatways] = useState(true);
   const handleChange = (setForm) => (e) => {
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
+
+  async function fetchCatways() {
+    setLoadingCatways(true);
+    try {
+      const data = await getAllCatways();
+      setCatways(data);
+    } catch (error) {
+      console.error(error.message);
+      setCatways([]);
+    } finally {
+      setLoadingCatways(false);
+    }
+  }
 
   return (
     <div className="container">
@@ -49,7 +65,15 @@ function App() {
           <Route path="/user" element={<User handleChange={handleChange} />} />
           <Route
             path="/catways"
-            element={<Catways handleChange={handleChange} />}
+            element={
+              <Catways
+                handleChange={handleChange}
+                catways={catways}
+                setCatways={setCatways}
+                loadingCatways={loadingCatways}
+                fetchCatways={fetchCatways}
+              />
+            }
           />
           <Route
             path="/catway"
@@ -57,11 +81,17 @@ function App() {
           />
           <Route
             path="/reservations"
-            element={<Bookings handleChange={handleChange} />}
+            element={
+              <Bookings
+                handleChange={handleChange}
+                catways={catways}
+                fetchCatways={fetchCatways}
+              />
+            }
           />
           <Route
             path="/reservation"
-            element={<Booking handleChange={handleChange} />}
+            element={<Booking handleChange={handleChange} catways={catways} />}
           />
         </Routes>
       </main>
