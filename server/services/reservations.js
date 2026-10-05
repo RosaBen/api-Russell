@@ -22,26 +22,27 @@ async function findCatwayNumber (catwayNumber) {
 
 
 /**
- * Get all reservations
+ * Get catway all reservations
  *
  * @async
- * @route GET/catways/reservations
+ * @route GET/catways/:id/reservations
+ * @param {id} catwayNumber
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
  */
-export const getAllReservations = async (req, res) => {
+export const getCatwayReservations = async (req, res) => {
   try {
-    const reservations = await Reservation.find();
-    if (!reservations) {
-      return res.status(404).json({ message: "there are no reservations created yet" });
-    }
-    return res.status(200).json(reservations);
+    const { id } = req.params;
+    console.log(id);
+    const catway = await findCatwayNumber(id);
+    console.log(catway);
+    const reservations = await Reservation.find({ catwayNumber: catway.catwayNumber });
+
+    return res.status(200).json({ catway, reservations });
   } catch (error) {
     console.error(error);
-    return res.status(501).json({
-      message: "server error"
-    });
+    return res.status(501).json({ message: "server error" });
   }
 };

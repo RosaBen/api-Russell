@@ -1,4 +1,5 @@
 import Catway from "../models/Catway.js";
+import Reservation from "../models/Reservation.js";
 
 /**
  * Register a new catway
@@ -155,6 +156,31 @@ export const deleteCatway = async (req, res) => {
     }
     await Catway.deleteOne(catway);
     return res.status(200).json({ message: "catway deleted" });
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({
+      message: "server error"
+    });
+  }
+};
+
+/**
+ * Get all reservations
+ *
+ * @async
+ * @route GET/catways/reservations
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+ * @param {import("express").NextFunction} next 
+ * @returns {Promise} 
+ */
+export const getAllReservations = async (req, res) => {
+  try {
+    const reservations = await Reservation.find();
+    if (!reservations) {
+      return res.status(404).json({ message: "there are no reservations created yet" });
+    }
+    return res.status(200).json(reservations);
   } catch (error) {
     console.error(error);
     return res.status(501).json({
