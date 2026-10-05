@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createNewCatway, getAllCatways, getCatwayByNumber, editCatway, deleteCatway } from "../services/catways.js";
+import { createNewCatway, getAllCatways, getCatwayByNumber, editCatway, deleteCatway, } from "../services/catways.js";
 
 const router = Router();
 

@@ -1,5 +1,6 @@
 import Catway from "../models/Catway.js";
 
+
 /**
  * Register a new catway
  *
@@ -162,3 +163,4 @@ export const deleteCatway = async (req, res) => {
     });
   }
 };
+
