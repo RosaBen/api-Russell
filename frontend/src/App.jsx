@@ -10,6 +10,7 @@ import User from "./pages/User";
 import Catways from "./pages/Catways";
 import Catway from "./pages/Catway";
 import Bookings from "./pages/Bookings";
+import Booking from "./pages/Booking";
 
 // Import Components
 import Header from "./components/Header";
@@ -57,6 +58,10 @@ function App() {
           <Route
             path="/reservations"
             element={<Bookings handleChange={handleChange} />}
+          />
+          <Route
+            path="/reservation"
+            element={<Booking handleChange={handleChange} />}
           />
         </Routes>
       </main>

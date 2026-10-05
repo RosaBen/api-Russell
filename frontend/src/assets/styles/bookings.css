@@ -35,8 +35,12 @@
   text-align: center;
 }
 
-.booking-card span {
+.booking-card span:not(.booking-card p:nth-child(2) > span) {
   font-weight: 300;
+}
+
+.booking-card > p:nth-child(1) > span:nth-child(1) {
+  text-transform: uppercase;
 }
 
 .renting-period time {
@@ -47,4 +51,27 @@
 .booking-card > p:nth-child(4) {
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--btn-color);
+}
+
+.booking-card .btns {
+  text-align: center;
+}
+
+.booking-card .btns button:nth-child(1) {
+  padding: 0.5rem;
+  background: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 1rem;
+}
+
+.booking-card .edit-del-btns button {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.booking-card .edit-del-btns button:nth-child(2) {
+  color: white;
 }

@@ -24,7 +24,8 @@ export default function Bookings() {
   }, []);
 
   const bookingList = bookings.map((booking) => {
-    const bookingId = `Cat${booking.catwayNumber}-${new Date(booking.endDate).getDate()}-${new Date(booking.endDate).getMonth()}`;
+    const bookingId = `Cat${booking.catwayNumber}-${String(new Date(booking.endDate).getDate()).padStart(2, "0")}-${String(new Date(booking.endDate).getMonth() + 1).padStart(2, "0")}-${new Date(booking.endDate).getFullYear()}`;
+
     return (
       <BookingCard booking={booking} key={booking._id} bookingId={bookingId} />
     );

@@ -1,16 +1,30 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function BookingCard({ booking, bookingId }) {
   if (!booking) return null;
   const location = useLocation();
-  // const isBookingsPage = location.pathname === "/reservations";
+  const navigate = useNavigate();
+  const isBookingsPage = location.pathname === "/reservations";
+
+  const formatDate = (value) => {
+    const date = new Date(value);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+  const handleViewBooking = () => {
+    sessionStorage.setItem("selectedBookingId", booking._id);
+    sessionStorage.setItem("selectedBookingCatwayNumber", booking.catwayNumber);
+    navigate("/reservation");
+  };
   return (
     <article className="booking-card">
       <p>
         Réservation: <span>{bookingId}</span>
       </p>
       <p>
-        Ponton numéro <span>{booking.catwayNumber}</span>
+        Ponton <span>{booking.catwayNumber}</span>
       </p>
       <p>
         Client: <span>{booking.clientName}</span>
@@ -19,14 +33,25 @@ export default function BookingCard({ booking, bookingId }) {
         Nom du bateau: <span>{booking.boatName}</span>
       </p>
       <div className="renting-period">
-        <time dateTime="20/12/2026">
+        <time dateTime={booking.startDate}>
           Date d'entrée:
-          <span>{` ${new Date(booking.startDate).getDate()}/${new Date(booking.startDate).getMonth()}/${new Date(booking.startDate).getFullYear()}`}</span>
+          <span>{`${formatDate(booking.startDate)}`}</span>
         </time>
-        <time dateTime="20/12/2026">
+        <time dateTime={booking.endDate}>
           Date de départ:
-          <span>{` ${new Date(booking.endDate).getDate()}/${new Date(booking.endDate).getMonth()}/${new Date(booking.endDate).getFullYear()}`}</span>
+          <span>{` ${formatDate(booking.endDate)}`}</span>
         </time>
+      </div>
+      <div className="btns">
+        {isBookingsPage && (
+          <button onClick={handleViewBooking}>Voir la réservation</button>
+        )}
+        {!isBookingsPage && (
+          <div className="edit-del-btns">
+            <button className="edit-btn">Modifier</button>
+            <button className="delete-btn">Supprimer</button>
+          </div>
+        )}
       </div>
     </article>
   );
