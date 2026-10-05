@@ -199,3 +199,40 @@ export const editExistingReservation = async (req, res) => {
     return res.status(501).json({ message: "server error" });
   }
 };
+
+/**
+ * delete an existing reservation for the selected catway
+ *
+ * @async
+ * @route DELETE/catways/:id/reservations/:idReservation
+ * @param {id} catwayNumber
+ * @param {idReservation} reservation_id
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {NextFunction} next 
+ * @returns {Promise} 
+ * @access Private
+ */
+export const deleteCatwayReservation = async (req, res) => {
+  try {
+    const { idReservation, id } = req.params;
+    const catway = await findCatwayNumber(id);
+    const reservation = await Reservation.findOneAndDelete({
+      _id: idReservation,
+      catwayNumber: catway.catwayNumber
+    });
+    if (!reservation) {
+      return res.status(404).json({
+        message: "reservation not found"
+      });
+    }
+
+    return res.status(200).json({
+      message: "reservation deleted"
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(501).json({ message: "server error" });
+  }
+};
