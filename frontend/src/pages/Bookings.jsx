@@ -35,9 +35,10 @@ export default function Bookings({ handleChange, catways, fetchCatways }) {
         bookingForm,
         bookingForm.catwayNumber,
       );
+
       console.log("booking created");
       setBookings((prev) => [newBooking, ...prev]);
-
+      await fetchBookings();
       setBookingForm({
         catwayNumber: "",
         clientName: "",

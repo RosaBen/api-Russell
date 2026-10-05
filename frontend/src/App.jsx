@@ -24,6 +24,7 @@ import "./assets/styles/userform.css";
 import "./assets/styles/catways.css";
 import "./assets/styles/catwayForm.css";
 import "./assets/styles/bookings.css";
+import "./assets/styles/bookingForm.css";
 import { getAllCatways } from "./assets/scripts/fetchCatways";
 
 function App() {

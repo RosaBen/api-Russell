@@ -12,39 +12,61 @@ export default function BookingForm({
   ));
   return (
     <form className="booking-form" onSubmit={submit}>
-      <label htmlFor="catway-number">Numéro du Catway</label>
       <select
-        name="catway-number"
-        id="catway-number"
+        name="catwayNumber"
         value={form.catwayNumber}
         onChange={inputChange}
       >
-        <option value="">-- Choisir un ponton --</option>
+        <option value="" disabled>
+          -- Sélectionner un ponton --
+        </option>
         {catways}
       </select>
       <fieldset>
         <legend>Infos Client</legend>
-        <label htmlFor="client-name">Nom du client</label>
-        <input
-          type="text"
-          placeholder="Jean Moulin"
-          id="client-name"
-          name="client-name"
-        />
-        <label htmlFor="boat-name">Nom du bateau</label>
-        <input
-          type="text"
-          placeholder="Casper"
-          id="boat-name"
-          name="boat-name"
-        />
+        <label>
+          Nom du client
+          <input
+            type="text"
+            placeholder="Jean Moulin"
+            name="clientName"
+            value={form.clientName}
+            onChange={inputChange}
+          />
+        </label>
+
+        <label>
+          Nom du bateau
+          <input
+            type="text"
+            placeholder="Casper"
+            name="boatName"
+            value={form.boatName}
+            onChange={inputChange}
+          />
+        </label>
       </fieldset>
       <fieldset>
         <legend>Dates de séjour</legend>
-        <label htmlFor="start-date">Date d'entrée</label>
-        <input type="date" name="start-date" id="start-date" />
-        <label htmlFor="end-date">Date départ</label>
-        <input type="date" name="end-date" id="end-date" />
+        <label>
+          Date d'entrée
+          <input
+            type="date"
+            name="startDate"
+            value={form.startDate}
+            onChange={inputChange}
+          />
+        </label>
+
+        <label>
+          Date départ{" "}
+          <input
+            type="date"
+            name="endDate"
+            value={form.endDate}
+            onChange={inputChange}
+          />
+        </label>
       </fieldset>
       <button type="submit">{submitText}</button>
     </form>
