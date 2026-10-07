@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { getBooking, editBooking } from "../assets/scripts/fetchBookings";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  getBooking,
+  editBooking,
+  deleteBooking,
+} from "../assets/scripts/fetchBookings";
 import BookingCard from "../components/BookingCard";
 
 export default function Booking({ handleChange, catwaysList }) {
@@ -15,6 +19,7 @@ export default function Booking({ handleChange, catwaysList }) {
     endDate: "",
   });
   const location = useLocation();
+  const navigate = useNavigate();
   const [currentBookingCatwayNumber, setCurrentCatwayNumber] = useState(
     () =>
       location.state?.catwayNumber ||
@@ -66,6 +71,21 @@ export default function Booking({ handleChange, catwaysList }) {
     }
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(currentBookingCatwayNumber);
+      await deleteBooking(currentBookingId, currentBookingCatwayNumber);
+      sessionStorage.removeItem("selectedBookingCatwayNumber");
+      sessionStorage.removeItem("selectedBookingId");
+      navigate("/reservations");
+
+      console.log("booking deleted");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchBooking();
   }, [currentBookingCatwayNumber, currentBookingId]);
@@ -78,6 +98,10 @@ export default function Booking({ handleChange, catwaysList }) {
       <Link
         to="/reservations"
         // target="_blank" rel="noopener noreferrer"
+        onClick={() => {
+          sessionStorage.removeItem("selectedBookingCatwayNumber");
+          sessionStorage.removeItem("selectedBookingId");
+        }}
       >
         Retour aux réservations
       </Link>
@@ -90,6 +114,7 @@ export default function Booking({ handleChange, catwaysList }) {
         editForm={editForm}
         setEditForm={setEditForm}
         catwaysList={catwaysList}
+        handleDelete={handleDelete}
       />
     </main>
   );

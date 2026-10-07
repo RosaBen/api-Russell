@@ -25,35 +25,50 @@ export default function UserCard({
     });
   };
 
-  const handleShowForm = () => {
-    setShowForm(true);
-  };
-
   return (
-    <article className="user-card">
-      <p>{user.username}</p>
-      <p>{user.email}</p>
-      <div className="btns">
-        {isUsersPage && <button onClick={handleViewUser}>Voir</button>}
-        {!isUsersPage && (
-          <div className="edit-del-btns">
-            <button className="edit-btn" onClick={handleShowForm}>
-              Modifier
-            </button>
-            <button className="delete-btn" onClick={handleDelete}>
-              Supprimer
-            </button>
+    <>
+      {!showForm && (
+        <article className="user-card">
+          <>
+            <h2>{user.username}</h2>
+            <p>{user.email}</p>
+          </>
+          <div className="btns">
+            {isUsersPage && <button onClick={handleViewUser}>Voir</button>}
+            {!isUsersPage && (
+              <div className="edit-del-btns">
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    setEditForm({
+                      username: user.username,
+                      email: user.email,
+                      password: "",
+                    });
+                    setShowForm(true);
+                  }}
+                >
+                  Modifier
+                </button>
+                <button className="delete-btn" onClick={handleDelete}>
+                  Supprimer
+                </button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {showForm && (
-        <UserForm
-          submitText="Modifier"
-          inputChange={handleChange(setEditForm)}
-          submit={handleEdit}
-          form={editForm}
-        />
+        </article>
       )}
-    </article>
+      {showForm && (
+        <div className="form-page">
+          <UserForm
+            submitText="Modifier"
+            inputChange={handleChange(setEditForm)}
+            submit={handleEdit}
+            form={editForm}
+          />
+          <button onClick={() => setShowForm(false)}>X</button>
+        </div>
+      )}
+    </>
   );
 }

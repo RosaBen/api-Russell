@@ -102,3 +102,23 @@ export async function editBooking (booking, catwayNumber, bookingNumber) {
 
   return response.json();
 }
+
+/**
+ * delete a booking
+ *
+ * @export
+ * @param {bookingNumber, catwayNumber}
+ * @async
+ * @returns {Promise} 
+ */
+export async function deleteBooking (bookingNumber, catwayNumber) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}/reservations/${bookingNumber}`, {
+    method: "delete",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("unable to delete catway");
+  }
+
+  return response.json();
+}

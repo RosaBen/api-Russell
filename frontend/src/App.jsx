@@ -19,12 +19,12 @@ import Footer from "./components/Footer";
 // Styles-scripts
 import "./assets/styles/app.css";
 import "./assets/styles/header.css";
-import "./assets/styles/users.css";
-import "./assets/styles/userform.css";
-import "./assets/styles/catways.css";
-import "./assets/styles/catwayForm.css";
-import "./assets/styles/bookings.css";
-import "./assets/styles/bookingForm.css";
+// import "./assets/styles/users.css";
+// import "./assets/styles/userform.css";
+// import "./assets/styles/catways.css";
+// import "./assets/styles/catwayForm.css";
+// import "./assets/styles/bookings.css";
+// import "./assets/styles/bookingForm.css";
 import { getAllCatways } from "./assets/scripts/fetchCatways";
 
 function App() {
@@ -60,54 +60,54 @@ function App() {
   return (
     <div className="container">
       <Header showMenu={showMenu} setShowMenu={setShowMenu} />
-      <main>
-        {showMenu && <div className="modal-overlay"></div>}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/register"
-            element={<Register handleChange={handleChange} />}
-          />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user" element={<User handleChange={handleChange} />} />
-          <Route
-            path="/catways"
-            element={
-              <Catways
-                handleChange={handleChange}
-                catways={catways}
-                setCatways={setCatways}
-                loadingCatways={loadingCatways}
-                fetchCatways={fetchCatways}
-              />
-            }
-          />
-          <Route
-            path="/catway"
-            element={<Catway handleChange={handleChange} />}
-          />
-          <Route
-            path="/reservations"
-            element={
-              <Bookings
-                handleChange={handleChange}
-                catways={catways}
-                fetchCatways={fetchCatways}
-              />
-            }
-          />
-          <Route
-            path="/reservation"
-            element={
-              <Booking
-                handleChange={handleChange}
-                catways={catways}
-                catwaysList={catwaysList}
-              />
-            }
-          />
-        </Routes>
-      </main>
+
+      {showMenu && <div className="modal-overlay"></div>}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/register"
+          element={<Register handleChange={handleChange} />}
+        />
+        <Route path="/users" element={<Users />} />
+        <Route path="/user" element={<User handleChange={handleChange} />} />
+        <Route
+          path="/catways"
+          element={
+            <Catways
+              handleChange={handleChange}
+              catways={catways}
+              setCatways={setCatways}
+              loadingCatways={loadingCatways}
+              fetchCatways={fetchCatways}
+            />
+          }
+        />
+        <Route
+          path="/catway"
+          element={<Catway handleChange={handleChange} />}
+        />
+        <Route
+          path="/reservations"
+          element={
+            <Bookings
+              handleChange={handleChange}
+              catways={catways}
+              fetchCatways={fetchCatways}
+            />
+          }
+        />
+        <Route
+          path="/reservation"
+          element={
+            <Booking
+              handleChange={handleChange}
+              catways={catways}
+              catwaysList={catwaysList}
+            />
+          }
+        />
+      </Routes>
+
       <Footer />
     </div>
   );

@@ -89,6 +89,7 @@ export default function Catway({ handleChange }) {
       <Link
         to="/catways"
         // target="_blank" rel="noopener noreferrer"
+        onClick={() => sessionStorage.removeItem("selectedCatway")}
       >
         Retour à la liste de pontons
       </Link>

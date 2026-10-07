@@ -10,6 +10,7 @@ export default function BookingCard({
   catwaysList,
   editForm,
   setEditForm,
+  handleDelete,
 }) {
   if (!booking) return null;
   const location = useLocation();
@@ -87,7 +88,9 @@ export default function BookingCard({
                 >
                   Modifier
                 </button>
-                <button className="delete-btn">Supprimer</button>
+                <button className="delete-btn" onClick={handleDelete}>
+                  Supprimer
+                </button>
               </div>
             )}
           </div>

@@ -27,7 +27,7 @@ export default function CatwayCard({
 
   return (
     <article className="catway-card">
-      {!showForm && !isCatwaysPage && (
+      {!showForm && (
         <div className="catway-infos">
           <p>{`Ponton ${catway.catwayNumber}`}</p>
           <p>

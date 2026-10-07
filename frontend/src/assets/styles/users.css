@@ -1,4 +1,19 @@
 .user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card .form-page {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card {
   width: 300px;
   place-items: center;
   border: 2px solid var(--bg-color);
