@@ -1,4 +1,10 @@
-export default function UserForm({ submitText, inputChange, submit, form }) {
+export default function UserForm({
+  submitText,
+  inputChange,
+  submit,
+  form,
+  btnColor,
+}) {
   return (
     <form className="user-form" onSubmit={submit}>
       <label htmlFor="username">Nom d'utilisateur</label>
@@ -33,7 +39,9 @@ export default function UserForm({ submitText, inputChange, submit, form }) {
         min="6"
         required
       />
-      <button type="submit">{submitText}</button>
+      <button type="submit" className={btnColor}>
+        {submitText}
+      </button>
     </form>
   );
 }

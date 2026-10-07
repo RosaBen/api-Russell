@@ -1,6 +1,7 @@
 import UserForm from "../components/UserForm";
 import { createUser } from "../assets/scripts/fetchUsers";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register({ handleChange }) {
   const [registerForm, setRegisterForm] = useState({
@@ -8,6 +9,7 @@ export default function Register({ handleChange }) {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ export default function Register({ handleChange }) {
         email: "",
         password: "",
       });
+      navigate("/users");
     } catch (error) {
       console.error(error.message);
     }
@@ -32,6 +35,7 @@ export default function Register({ handleChange }) {
         inputChange={handleChange(setRegisterForm)}
         submit={handleRegister}
         form={registerForm}
+        btnColor="green"
       />
     </main>
   );

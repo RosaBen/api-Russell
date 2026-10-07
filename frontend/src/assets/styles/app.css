@@ -12,10 +12,21 @@
 
 main {
   background: var(--form-color);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* position: relative; */
   z-index: 0;
+}
+
+main h1 {
+  color: var(--bg-color);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  text-transform: uppercase;
 }
 
 a {
@@ -27,4 +38,24 @@ a {
 a:hover,
 button:hover {
   opacity: 0.5;
+}
+
+.form-page {
+  display: grid;
+  grid-template-columns: 92% 8%;
+  border: 2px solid var(--bg-color);
+  border-radius: 0.3rem;
+}
+
+.form-page > button {
+  color: var(--bg-color);
+  font-size: large;
+  font-weight: 700;
+  align-self: baseline;
+}
+
+.green {
+  background: var(--bg-color);
+  color: var(--text-color);
+  text-transform: uppercase;
 }

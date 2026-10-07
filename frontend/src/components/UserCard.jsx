@@ -38,7 +38,7 @@ export default function UserCard({
             {!isUsersPage && (
               <div className="edit-del-btns">
                 <button
-                  className="edit-btn"
+                  className="edit-btn orange"
                   onClick={() => {
                     setEditForm({
                       username: user.username,
@@ -50,7 +50,7 @@ export default function UserCard({
                 >
                   Modifier
                 </button>
-                <button className="delete-btn" onClick={handleDelete}>
+                <button className="delete-btn red" onClick={handleDelete}>
                   Supprimer
                 </button>
               </div>
@@ -65,6 +65,7 @@ export default function UserCard({
             inputChange={handleChange(setEditForm)}
             submit={handleEdit}
             form={editForm}
+            btnColor="orange"
           />
           <button onClick={() => setShowForm(false)}>X</button>
         </div>

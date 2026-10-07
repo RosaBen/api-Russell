@@ -19,8 +19,8 @@ import Footer from "./components/Footer";
 // Styles-scripts
 import "./assets/styles/app.css";
 import "./assets/styles/header.css";
-// import "./assets/styles/users.css";
-// import "./assets/styles/userform.css";
+import "./assets/styles/users.css";
+import "./assets/styles/userform.css";
 // import "./assets/styles/catways.css";
 // import "./assets/styles/catwayForm.css";
 // import "./assets/styles/bookings.css";
@@ -68,7 +68,7 @@ function App() {
           path="/register"
           element={<Register handleChange={handleChange} />}
         />
-        <Route path="/users" element={<Users />} />
+        <Route path="/users" element={<Users handleChange={handleChange} />} />
         <Route path="/user" element={<User handleChange={handleChange} />} />
         <Route
           path="/catways"
