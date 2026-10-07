@@ -35,6 +35,14 @@ export default function Navbar({ classDesktop, onClick }) {
       >
         Pontons
       </Link>
+      <Link
+        to="/reservations"
+        // target="_blank"
+        // rel="noopener noreferrer"
+        onClick={onClick}
+      >
+        Réservations
+      </Link>
     </nav>
   );
 }

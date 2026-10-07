@@ -1,0 +1,95 @@
+main .create-booking-btn {
+  background: var(--bg-color);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4rem;
+}
+
+.booking-list {
+  border-top: 2px solid var(--bg-color);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
+  place-items: center;
+}
+
+.booking-card {
+  border: 2px solid var(--btn-color);
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 1rem;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.booking-card > p:not(.booking-card p:nth-child(2)),
+.renting-period time {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  width: 220px;
+}
+
+.booking-card p:nth-child(2) {
+  font-weight: 700;
+  text-align: center;
+}
+
+.booking-card span:not(.booking-card p:nth-child(2) > span) {
+  font-weight: 300;
+}
+
+.booking-card > p:nth-child(1) > span:nth-child(1) {
+  text-transform: uppercase;
+}
+
+.renting-period time {
+  margin-bottom: 1rem;
+}
+
+.booking-card > p:nth-child(1),
+.booking-card > p:nth-child(4) {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--btn-color);
+}
+
+.booking-card .btns {
+  text-align: center;
+}
+
+.booking-card .btns button:nth-child(1) {
+  padding: 0.5rem;
+  background: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 1rem;
+}
+
+.booking-card .edit-del-btns button {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.booking-card .edit-del-btns button:nth-child(2) {
+  color: white;
+}
+
+.booking-card .edit-del-btns button:nth-child(1) {
+  background: orange;
+}
+
+.booking-card .edit-del-btns button:nth-child(2) {
+  background: red;
+}

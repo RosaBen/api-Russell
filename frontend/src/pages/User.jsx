@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { getUser, editUser, deleteUser } from "../assets/scripts/fetchApi";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
 import UserCard from "../components/UserCard";
 
 export default function User({ handleChange }) {
@@ -77,8 +77,14 @@ export default function User({ handleChange }) {
     return <p>Chargement ...</p>;
   }
   return (
-    <main>
-      <h1>Information sur l'utilisateur</h1>
+    <main className="user-page">
+      <Link
+        to="/users"
+        // target="_blank" rel="noopener noreferrer"
+        onClick={() => sessionStorage.removeItem("selectedUser")}
+      >
+        Retour à la liste des utilisateurs
+      </Link>
       <UserCard
         user={user}
         showForm={showForm}

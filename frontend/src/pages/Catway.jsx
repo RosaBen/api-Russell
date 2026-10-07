@@ -4,7 +4,7 @@ import {
   getCatway,
   EditCatway,
   deleteCatway,
-} from "../assets/scripts/fetchApi";
+} from "../assets/scripts/fetchCatways";
 import CatwayCard from "../components/CatwayCard";
 
 export default function Catway({ handleChange }) {
@@ -86,7 +86,13 @@ export default function Catway({ handleChange }) {
   }
   return (
     <main>
-      <h1>Information sur le ponton</h1>
+      <Link
+        to="/catways"
+        // target="_blank" rel="noopener noreferrer"
+        onClick={() => sessionStorage.removeItem("selectedCatway")}
+      >
+        Retour à la liste de pontons
+      </Link>
       <CatwayCard
         catway={catway}
         handleChange={handleChange}
@@ -97,12 +103,6 @@ export default function Catway({ handleChange }) {
         setEditForm={setEditForm}
         handleDelete={handleDelete}
       />
-      <Link
-        to="/catways"
-        // target="_blank" rel="noopener noreferrer"
-      >
-        Retour à la liste de pontons
-      </Link>
     </main>
   );
 }

@@ -14,15 +14,8 @@ main {
   background: var(--form-color);
   padding-top: 2rem;
   padding-bottom: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  place-items: center;
-}
-
-main h1 {
-  color: var(--bg-color);
-  margin-bottom: 1rem;
-  text-align: center;
+  /* position: relative; */
+  z-index: 0;
 }
 
 a {
