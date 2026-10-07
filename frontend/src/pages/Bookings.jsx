@@ -69,6 +69,7 @@ export default function Bookings({ handleChange, catways, fetchCatways }) {
         catwaysList={catwaysList}
         handleChange={handleChange}
         setBookingForm={setBookingForm}
+        bookingForm={bookingForm}
       />
     );
   });

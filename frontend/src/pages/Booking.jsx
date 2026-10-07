@@ -1,27 +1,40 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getBooking } from "../assets/scripts/fetchBookings";
+import { Link, useLocation } from "react-router-dom";
+import { getBooking, editBooking } from "../assets/scripts/fetchBookings";
 import BookingCard from "../components/BookingCard";
 
-export default function Booking() {
+export default function Booking({ handleChange, catwaysList }) {
   const [booking, setBooking] = useState(null);
   const [loadingBooking, setLoadingBooking] = useState(true);
-  const [bookingId, setBookingId] = useState(() =>
-    sessionStorage.getItem("selectedBookingId"),
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({
+    catwayNumber: "",
+    clientName: "",
+    boatName: "",
+    startDate: "",
+    endDate: "",
+  });
+  const location = useLocation();
+  const [currentBookingCatwayNumber, setCurrentCatwayNumber] = useState(
+    () =>
+      location.state?.catwayNumber ||
+      sessionStorage.getItem("selectedBookingCatwayNumber") ||
+      "",
   );
-  const [bookingCatwayNumber, setBookingCatwayNumber] = useState(() =>
-    sessionStorage.getItem("selectedBookingCatwayNumber"),
-  );
+  const currentBookingId = sessionStorage.getItem("selectedBookingId");
 
   async function fetchBooking() {
-    if (!bookingCatwayNumber || !bookingId) {
+    if (!currentBookingCatwayNumber || !currentBookingId) {
       setBooking(null);
       setLoadingBooking(false);
       return;
     }
     setLoadingBooking(true);
     try {
-      const bookingData = await getBooking(bookingCatwayNumber, bookingId);
+      const bookingData = await getBooking(
+        currentBookingCatwayNumber,
+        currentBookingId,
+      );
       setBooking(bookingData);
     } catch (error) {
       console.error(error.message);
@@ -31,9 +44,31 @@ export default function Booking() {
     }
   }
 
+  const handleEditBooking = async (e) => {
+    e.preventDefault();
+    try {
+      await editBooking(editForm, currentBookingCatwayNumber, currentBookingId);
+      const nextNumber = editForm.catwayNumber || currentBookingCatwayNumber;
+      if (nextNumber !== currentBookingCatwayNumber) {
+        sessionStorage.setItem("selectedBookingCatwayNumber", nextNumber);
+        setCurrentCatwayNumber(nextNumber);
+      } else {
+        const newData = await getBooking(
+          currentBookingCatwayNumber,
+          currentBookingId,
+        );
+        setBooking(newData);
+        console.log("booking edited");
+      }
+      setIsEditing(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchBooking();
-  }, [bookingCatwayNumber, bookingId]);
+  }, [currentBookingCatwayNumber, currentBookingId]);
 
   if (loadingBooking) {
     return <p>Chargement ...</p>;
@@ -46,7 +81,16 @@ export default function Booking() {
       >
         Retour aux réservations
       </Link>
-      <BookingCard booking={booking} />
+      <BookingCard
+        booking={booking}
+        handleChange={handleChange}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        handleEdit={handleEditBooking}
+        editForm={editForm}
+        setEditForm={setEditForm}
+        catwaysList={catwaysList}
+      />
     </main>
   );
 }

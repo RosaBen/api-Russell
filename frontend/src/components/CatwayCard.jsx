@@ -27,21 +27,33 @@ export default function CatwayCard({
 
   return (
     <article className="catway-card">
-      <div className="catway-infos">
-        <p>{`Ponton ${catway.catwayNumber}`}</p>
-        <p>
-          Longueur: <span>{` ${catway.catwayType}`}</span>
-        </p>
-        <p>{catway.catwayState}</p>
-      </div>
+      {!showForm && !isCatwaysPage && (
+        <div className="catway-infos">
+          <p>{`Ponton ${catway.catwayNumber}`}</p>
+          <p>
+            Longueur: <span>{` ${catway.catwayType}`}</span>
+          </p>
+          <p>{catway.catwayState}</p>
+        </div>
+      )}
 
       <div className="btns">
         {isCatwaysPage && (
           <button onClick={handleViewCatway}>Voir le catway</button>
         )}
-        {!isCatwaysPage && (
+        {!showForm && !isCatwaysPage && (
           <div className="edit-del-btns">
-            <button className="edit-btn" onClick={() => setShowForm(true)}>
+            <button
+              className="edit-btn"
+              onClick={() => {
+                setEditForm({
+                  catwayNumber: catway.catwayNumber,
+                  catwayType: catway.catwayType,
+                  catwayState: catway.catwayState,
+                });
+                setShowForm(true);
+              }}
+            >
               Modifier
             </button>
             <button className="delete-btn" onClick={handleDelete}>

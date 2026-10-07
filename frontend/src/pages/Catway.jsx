@@ -86,7 +86,6 @@ export default function Catway({ handleChange }) {
   }
   return (
     <main>
-      <h1>Information sur le ponton</h1>
       <Link
         to="/catways"
         // target="_blank" rel="noopener noreferrer"

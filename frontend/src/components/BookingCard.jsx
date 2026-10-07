@@ -3,11 +3,13 @@ import BookingForm from "./BookingForm";
 
 export default function BookingCard({
   booking,
-  setShowForm,
-  showForm,
-  catwaysList,
   handleChange,
-  setBookingForm,
+  setIsEditing,
+  isEditing,
+  handleEdit,
+  catwaysList,
+  editForm,
+  setEditForm,
 }) {
   if (!booking) return null;
   const location = useLocation();
@@ -30,51 +32,67 @@ export default function BookingCard({
   };
 
   return (
-    <article className="booking-card">
-      <p>
-        Réservation: <span>{bookingNumber}</span>
-      </p>
-      <p>
-        Ponton <span>{booking.catwayNumber}</span>
-      </p>
-      <p>
-        Client: <span>{booking.clientName}</span>
-      </p>
-      <p>
-        Nom du bateau: <span>{booking.boatName}</span>
-      </p>
-      <div className="renting-period">
-        <time dateTime={booking.startDate}>
-          Date d'entrée:
-          <span>{`${formatDate(booking.startDate)}`}</span>
-        </time>
-        <time dateTime={booking.endDate}>
-          Date de départ:
-          <span>{` ${formatDate(booking.endDate)}`}</span>
-        </time>
-      </div>
-      <div className="btns">
-        {isBookingsPage && (
-          <button onClick={handleViewBooking}>Voir la réservation</button>
-        )}
-        {!isBookingsPage && (
-          <div className="edit-del-btns">
-            <button className="edit-btn" onClick={() => setShowForm(true)}>
-              Modifier
-            </button>
-            <button className="delete-btn">Supprimer</button>
-          </div>
-        )}
-      </div>
-      {showForm && (
+    <>
+      {isEditing && (
         <BookingForm
           catwaysList={catwaysList}
           submitText="Modifier"
-          inputChange={handleChange(setBookingForm)}
-          // submit={handleCreateBooking}
-          form={bookingForm}
+          inputChange={handleChange(setEditForm)}
+          submit={handleEdit}
+          form={editForm}
         />
       )}
-    </article>
+      {!isEditing && booking && (
+        <article className="booking-card">
+          <p>
+            Réservation: <span>{bookingNumber}</span>
+          </p>
+          <p>
+            Ponton <span>{booking.catwayNumber}</span>
+          </p>
+          <p>
+            Client: <span>{booking.clientName}</span>
+          </p>
+          <p>
+            Nom du bateau: <span>{booking.boatName}</span>
+          </p>
+          <div className="renting-period">
+            <time dateTime={booking.startDate}>
+              Date d'entrée:
+              <span>{`${formatDate(booking.startDate)}`}</span>
+            </time>
+            <time dateTime={booking.endDate}>
+              Date de départ:
+              <span>{` ${formatDate(booking.endDate)}`}</span>
+            </time>
+          </div>
+          <div className="btns">
+            {isBookingsPage && (
+              <button onClick={handleViewBooking}>Voir la réservation</button>
+            )}
+            {!isBookingsPage && (
+              <div className="edit-del-btns">
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    setEditForm({
+                      catwayNumber: booking.catwayNumber,
+                      clientName: booking.clientName,
+                      boatName: booking.boatName,
+                      startDate: booking.startDate.slice(0, 10),
+                      endDate: booking.endDate.slice(0, 10),
+                    });
+                    setIsEditing(true);
+                  }}
+                >
+                  Modifier
+                </button>
+                <button className="delete-btn">Supprimer</button>
+              </div>
+            )}
+          </div>
+        </article>
+      )}
+    </>
   );
 }

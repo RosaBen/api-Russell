@@ -1,6 +1,6 @@
 // Import React components
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Import pages
 import Home from "./pages/Home";
@@ -51,6 +51,12 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    fetchCatways();
+  }, []);
+
+  const catwaysList = catways.map((catway) => catway.catwayNumber);
+
   return (
     <div className="container">
       <Header showMenu={showMenu} setShowMenu={setShowMenu} />
@@ -92,7 +98,13 @@ function App() {
           />
           <Route
             path="/reservation"
-            element={<Booking handleChange={handleChange} catways={catways} />}
+            element={
+              <Booking
+                handleChange={handleChange}
+                catways={catways}
+                catwaysList={catwaysList}
+              />
+            }
           />
         </Routes>
       </main>

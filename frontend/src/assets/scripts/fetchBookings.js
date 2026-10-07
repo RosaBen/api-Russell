@@ -77,3 +77,28 @@ export async function createBooking (booking, catwayNumber) {
   }
   return response.json();
 }
+
+/**
+ * edit a booking
+ *
+ * @export
+ * @param {catwaydata, catwayNumber, bookingNumber}
+ * @async
+ * @returns {Promise} 
+ */
+export async function editBooking (booking, catwayNumber, bookingNumber) {
+  const response = await fetch(`${API_URL}/catways/${catwayNumber}/reservations/${bookingNumber}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "include",
+    body: JSON.stringify(booking)
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message);
+  }
+
+  return response.json();
+}
