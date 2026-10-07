@@ -35,7 +35,8 @@ export async function createUser (user) {
 export async function getAllUsers () {
   const response = await fetch(`${API_URL}/users`, {
     method: "get",
-    credentials: "include"
+    credentials: "include",
+    cache: "no-store"
   });
 
   const data = await response.json();
@@ -58,6 +59,7 @@ export async function getUser (email) {
   const response = await fetch(`${API_URL}/users/${email}`, {
     method: "GET",
     credentials: "include",
+    cache: "no-store"
   });
   const data = await response.json();
   if (!response.ok) {

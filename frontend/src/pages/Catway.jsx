@@ -87,6 +87,12 @@ export default function Catway({ handleChange }) {
   return (
     <main>
       <h1>Information sur le ponton</h1>
+      <Link
+        to="/catways"
+        // target="_blank" rel="noopener noreferrer"
+      >
+        Retour à la liste de pontons
+      </Link>
       <CatwayCard
         catway={catway}
         handleChange={handleChange}
@@ -97,12 +103,6 @@ export default function Catway({ handleChange }) {
         setEditForm={setEditForm}
         handleDelete={handleDelete}
       />
-      <Link
-        to="/catways"
-        // target="_blank" rel="noopener noreferrer"
-      >
-        Retour à la liste de pontons
-      </Link>
     </main>
   );
 }

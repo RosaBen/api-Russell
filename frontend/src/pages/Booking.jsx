@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getBooking } from "../assets/scripts/fetchBookings";
 import BookingCard from "../components/BookingCard";
 
@@ -39,6 +40,12 @@ export default function Booking() {
   }
   return (
     <main>
+      <Link
+        to="/reservations"
+        // target="_blank" rel="noopener noreferrer"
+      >
+        Retour aux réservations
+      </Link>
       <BookingCard booking={booking} />
     </main>
   );

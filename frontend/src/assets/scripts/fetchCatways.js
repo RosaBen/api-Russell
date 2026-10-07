@@ -39,7 +39,8 @@ export async function createCatway (catway) {
 export async function getAllCatways () {
   const response = await fetch(`${API_URL}/catways`, {
     method: "get",
-    credentials: "include"
+    credentials: "include",
+    cache: "no-store"
   });
 
   const data = await response.json();
@@ -62,7 +63,8 @@ export async function getAllCatways () {
 export async function getCatway (catwayNumber) {
   const response = await fetch(`${API_URL}/catways/${catwayNumber}`, {
     method: "get",
-    credentials: "include"
+    credentials: "include",
+    cache: "no-store"
   });
 
   const data = await response.json();

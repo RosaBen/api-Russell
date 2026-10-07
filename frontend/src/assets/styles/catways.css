@@ -14,7 +14,7 @@ main h1 {
 }
 
 main > a {
-  margin-top: 3rem;
+  margin-bottom: 3rem;
   background: var(--bg-color);
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -97,4 +97,12 @@ main > a {
 .catway-card .btns {
   display: flex;
   flex-direction: column;
+}
+
+.catway-card .edit-del-btns button:nth-child(1) {
+  background: orange;
+}
+
+.catway-card .edit-del-btns button:nth-child(2) {
+  background: red;
 }

@@ -14,7 +14,8 @@ const API_URL = "http://localhost:3000/api";
 export async function getAllBookings () {
   const response = await fetch(`${API_URL}/reservations`, {
     method: "get",
-    credentials: "include"
+    credentials: "include",
+    cache: "no-store"
   });
 
   const data = await response.json();
@@ -39,7 +40,8 @@ export async function getBooking (catwayNumber, id) {
   const response = await fetch(`${API_URL}/catways/${catwayNumber}/reservations/${id}
     `, {
     method: "get",
-    credentials: "include"
+    credentials: "include",
+    cache: "no-store"
   });
 
   const data = await response.json();

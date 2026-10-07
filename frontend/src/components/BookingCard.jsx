@@ -1,6 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import BookingForm from "./BookingForm";
 
-export default function BookingCard({ booking, bookingId }) {
+export default function BookingCard({
+  booking,
+  setShowForm,
+  showForm,
+  catwaysList,
+  handleChange,
+  setBookingForm,
+}) {
   if (!booking) return null;
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,15 +21,18 @@ export default function BookingCard({ booking, bookingId }) {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
+  const bookingNumber = `Cat${booking.catwayNumber}-${String(new Date(booking.endDate).getDate()).padStart(2, "0")}-${String(new Date(booking.endDate).getMonth() + 1).padStart(2, "0")}-${new Date(booking.endDate).getFullYear()}`;
   const handleViewBooking = () => {
     sessionStorage.setItem("selectedBookingId", booking._id);
     sessionStorage.setItem("selectedBookingCatwayNumber", booking.catwayNumber);
     navigate("/reservation");
   };
+
   return (
     <article className="booking-card">
       <p>
-        Réservation: <span>{bookingId}</span>
+        Réservation: <span>{bookingNumber}</span>
       </p>
       <p>
         Ponton <span>{booking.catwayNumber}</span>
@@ -48,11 +59,22 @@ export default function BookingCard({ booking, bookingId }) {
         )}
         {!isBookingsPage && (
           <div className="edit-del-btns">
-            <button className="edit-btn">Modifier</button>
+            <button className="edit-btn" onClick={() => setShowForm(true)}>
+              Modifier
+            </button>
             <button className="delete-btn">Supprimer</button>
           </div>
         )}
       </div>
+      {showForm && (
+        <BookingForm
+          catwaysList={catwaysList}
+          submitText="Modifier"
+          inputChange={handleChange(setBookingForm)}
+          // submit={handleCreateBooking}
+          form={bookingForm}
+        />
+      )}
     </article>
   );
 }

@@ -60,10 +60,16 @@ export default function Bookings({ handleChange, catways, fetchCatways }) {
   const catwaysList = catways.map((catway) => catway.catwayNumber);
 
   const bookingList = bookings.map((booking) => {
-    const bookingId = `Cat${booking.catwayNumber}-${String(new Date(booking.endDate).getDate()).padStart(2, "0")}-${String(new Date(booking.endDate).getMonth() + 1).padStart(2, "0")}-${new Date(booking.endDate).getFullYear()}`;
-
     return (
-      <BookingCard booking={booking} key={booking._id} bookingId={bookingId} />
+      <BookingCard
+        booking={booking}
+        key={booking._id}
+        setShowForm={setShowForm}
+        showForm={showForm}
+        catwaysList={catwaysList}
+        handleChange={handleChange}
+        setBookingForm={setBookingForm}
+      />
     );
   });
 
