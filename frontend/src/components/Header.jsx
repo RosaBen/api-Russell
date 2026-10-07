@@ -12,7 +12,12 @@ export default function Header({ showMenu, setShowMenu }) {
     <header>
       <h1>Russell's Catways</h1>
       {!showMenu && (
-        <button onClick={handleMenu}>
+        <button
+          onClick={handleMenu}
+          aria-label="Ouvrir le menu"
+          aria-expanded={showMenu}
+          aria-controls="modal-menu"
+        >
           <TiThMenu className="icon" />
         </button>
       )}
@@ -20,7 +25,9 @@ export default function Header({ showMenu, setShowMenu }) {
         <>
           <div className="modal-menu">
             <Navbar onClick={handleClose} />
-            <button onClick={handleClose}>X</button>
+            <button onClick={handleClose} aria-label="Fermer le menu">
+              X
+            </button>
           </div>
         </>
       )}

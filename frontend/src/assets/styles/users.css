@@ -1,15 +1,15 @@
-.users-page > button {
+.register-page > a {
+  text-decoration: underline;
+}
+.users-page a {
   margin-bottom: 1rem;
   padding: 0.5rem 0.8rem;
   border-radius: 1rem;
   font-weight: 700;
+  text-align: center;
 }
-
-.user-page a {
-  margin-bottom: 1.5rem;
-  background: var(--bg-color);
-  padding: 0.5rem;
-  border-radius: 1rem;
+.user-page > a {
+  text-decoration: underline;
 }
 
 .user-card .form-page {

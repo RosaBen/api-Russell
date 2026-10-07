@@ -1,51 +1,52 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import UserForm from "./UserForm";
 
 export default function UserCard({
   user,
   handleChange,
-  showForm,
-  setShowForm,
+  showEditForm,
+  setShowEditForm,
   setEditForm,
   handleEdit,
   editForm,
   handleDelete,
+  errors,
 }) {
   if (!user) return null;
-  const navigate = useNavigate();
   const location = useLocation();
   const isUsersPage = location.pathname === "/users";
-
-  const handleViewUser = () => {
+  const sessionStorageUser = () => {
     sessionStorage.setItem("selectedUser", user.email);
-    navigate(`/user`, {
-      state: {
-        email: user.email,
-      },
-    });
   };
 
   return (
     <>
-      {!showForm && (
+      {!showEditForm && (
         <article className="user-card">
           <>
             <h2>{user.username}</h2>
             <p>{user.email}</p>
           </>
           <div className="btns">
-            {isUsersPage && <button onClick={handleViewUser}>Voir</button>}
+            {isUsersPage && (
+              <Link to="/user" onClick={sessionStorageUser} className="blue">
+                Voir
+              </Link>
+            )}
             {!isUsersPage && (
               <div className="edit-del-btns">
                 <button
                   className="edit-btn orange"
+                  aria-expanded={showEditForm}
+                  aria-label="Modifier l'utilisateur"
+                  aria-controls="user-form"
                   onClick={() => {
                     setEditForm({
                       username: user.username,
                       email: user.email,
                       password: "",
                     });
-                    setShowForm(true);
+                    setShowEditForm(true);
                   }}
                 >
                   Modifier
@@ -58,7 +59,7 @@ export default function UserCard({
           </div>
         </article>
       )}
-      {showForm && (
+      {showEditForm && (
         <div className="form-page">
           <UserForm
             submitText="Modifier"
@@ -66,8 +67,14 @@ export default function UserCard({
             submit={handleEdit}
             form={editForm}
             btnColor="orange"
+            errors={errors}
           />
-          <button onClick={() => setShowForm(false)}>X</button>
+          <button
+            onClick={() => setShowEditForm(false)}
+            aria-label="Fermer le formulaire"
+          >
+            X
+          </button>
         </div>
       )}
     </>

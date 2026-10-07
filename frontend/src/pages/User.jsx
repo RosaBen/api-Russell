@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
 import UserCard from "../components/UserCard";
 
-export default function User({ handleChange }) {
+export default function User({ handleChange, errors }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -11,7 +11,7 @@ export default function User({ handleChange }) {
   const [email, setEmail] = useState(
     () => location.state?.email || sessionStorage.getItem("selectedUser") || "",
   );
-  const [showForm, setShowForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
   const [editForm, setEditForm] = useState({
     username: "",
     email: "",
@@ -51,7 +51,7 @@ export default function User({ handleChange }) {
         console.log("user modified");
       }
 
-      setShowForm(false);
+      setShowEditForm(false);
     } catch (error) {
       console.error(error.message);
     }
@@ -78,23 +78,26 @@ export default function User({ handleChange }) {
   }
   return (
     <main className="user-page">
-      <Link
-        to="/users"
-        // target="_blank" rel="noopener noreferrer"
-        onClick={() => sessionStorage.removeItem("selectedUser")}
-      >
-        Retour à la liste des utilisateurs
-      </Link>
       <UserCard
         user={user}
-        showForm={showForm}
-        setShowForm={setShowForm}
+        showEditForm={showEditForm}
+        setShowEditForm={setShowEditForm}
         setEditForm={setEditForm}
         handleEdit={handleEdit}
         handleChange={handleChange}
         editForm={editForm}
         handleDelete={handleDelete}
+        errors={errors}
       />
+      {!showEditForm && (
+        <Link
+          to="/users"
+          // target="_blank" rel="noopener noreferrer"
+          onClick={() => sessionStorage.removeItem("selectedUser")}
+        >
+          Liste des utilisateurs
+        </Link>
+      )}
     </main>
   );
 }

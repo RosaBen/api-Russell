@@ -28,6 +28,7 @@ import "./assets/styles/userform.css";
 import { getAllCatways } from "./assets/scripts/fetchCatways";
 
 function App() {
+  const [errors, setErrors] = useState({});
   const [showMenu, setShowMenu] = useState(false);
   const [catways, setCatways] = useState([]);
   const [loadingCatways, setLoadingCatways] = useState(true);
@@ -66,10 +67,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/register"
-          element={<Register handleChange={handleChange} />}
+          element={<Register handleChange={handleChange} errors={errors} />}
         />
         <Route path="/users" element={<Users handleChange={handleChange} />} />
-        <Route path="/user" element={<User handleChange={handleChange} />} />
+        <Route
+          path="/user"
+          element={<User handleChange={handleChange} errors={errors} />}
+        />
         <Route
           path="/catways"
           element={
