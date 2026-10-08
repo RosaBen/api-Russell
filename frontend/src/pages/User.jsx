@@ -3,7 +3,12 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
 import UserCard from "../components/UserCard";
 
-export default function User({ handleChange, errors, handleUserError }) {
+export default function User({
+  handleChange,
+  errors,
+  handleUserError,
+  isConnected,
+}) {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -89,6 +94,7 @@ export default function User({ handleChange, errors, handleUserError }) {
         editForm={editForm}
         handleDelete={handleDelete}
         errors={errors}
+        isConnected={isConnected}
       />
       {!showEditForm && (
         <Link

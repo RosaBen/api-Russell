@@ -10,6 +10,7 @@ export default function UserCard({
   handleEdit,
   editForm,
   handleDelete,
+  isConnected,
   errors,
 }) {
   if (!user) return null;
@@ -68,6 +69,7 @@ export default function UserCard({
             form={editForm}
             btnColor="orange"
             errors={errors}
+            isConnected={isConnected}
           />
           <button
             onClick={() => setShowEditForm(false)}

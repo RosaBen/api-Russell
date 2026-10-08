@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 // Import pages
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Users from "./pages/Users";
 import User from "./pages/User";
 import Catways from "./pages/Catways";
@@ -32,6 +33,8 @@ function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [catways, setCatways] = useState([]);
   const [loadingCatways, setLoadingCatways] = useState(true);
+  const [isConnected, setIsConnected] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const handleChange = (setForm) => (e) => {
     setForm((prev) => ({
       ...prev,
@@ -53,6 +56,7 @@ function App() {
   }
 
   useEffect(() => {
+    if (!isConnected) return;
     fetchCatways();
   }, []);
 
@@ -81,7 +85,11 @@ function App() {
 
   return (
     <div className="container">
-      <Header showMenu={showMenu} setShowMenu={setShowMenu} />
+      <Header
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+        isConnected={isConnected}
+      />
 
       {showMenu && <div className="modal-overlay"></div>}
       <Routes>
@@ -96,12 +104,24 @@ function App() {
             />
           }
         />
+        <Route
+          path="/login"
+          element={
+            <Login
+              handleChange={handleChange}
+              setIsConnected={setIsConnected}
+              setCurrentUser={setCurrentUser}
+              errors={errors}
+            />
+          }
+        />
         <Route path="/users" element={<Users handleChange={handleChange} />} />
         <Route
           path="/user"
           element={
             <User
               handleChange={handleChange}
+              isConnected={isConnected}
               errors={errors}
               handleUserError={handleUserError}
             />
@@ -116,6 +136,7 @@ function App() {
               setCatways={setCatways}
               loadingCatways={loadingCatways}
               fetchCatways={fetchCatways}
+              isConnected={isConnected}
             />
           }
         />

@@ -59,6 +59,18 @@ header .icon {
   z-index: 1;
 }
 
+.logout-btn {
+  background: transparent;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
 /* Footer */
 
 footer {

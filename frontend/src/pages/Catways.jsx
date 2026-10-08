@@ -9,6 +9,7 @@ export default function Catways({
   setCatways,
   loadingCatways,
   fetchCatways,
+  isConnected,
 }) {
   const [showForm, setShowForm] = useState(false);
   const [catwayForm, setCatwayForm] = useState({
@@ -47,37 +48,39 @@ export default function Catways({
     return <p>Chargement ...</p>;
   }
   return (
-    <main className="catways-page">
-      <h1>Liste des pontons</h1>
-      {!showForm && (
-        <button
-          onClick={() => setShowForm(true)}
-          className="create-catway-btn"
-          aria-expanded={showForm}
-          aria-label="Ajouter un ponton"
-          aria-controls="catway-form"
-        >
-          Ajouter un ponton
-        </button>
-      )}
-      {showForm && (
-        <div className="catway-form-modal">
-          <CatwayForm
-            submitText="Ajouter le ponton"
-            inputChange={handleChange(setCatwayForm)}
-            submit={handleCreateCatway}
-            form={catwayForm}
-          />
+    isConnected && (
+      <main className="catways-page">
+        <h1>Liste des pontons</h1>
+        {!showForm && (
           <button
-            onClick={() => setShowForm(false)}
-            aria-label="Fermer le formulaire"
+            onClick={() => setShowForm(true)}
+            className="create-catway-btn"
+            aria-expanded={showForm}
+            aria-label="Ajouter un ponton"
+            aria-controls="catway-form"
           >
-            X
+            Ajouter un ponton
           </button>
-        </div>
-      )}
+        )}
+        {showForm && (
+          <div className="catway-form-modal">
+            <CatwayForm
+              submitText="Ajouter le ponton"
+              inputChange={handleChange(setCatwayForm)}
+              submit={handleCreateCatway}
+              form={catwayForm}
+            />
+            <button
+              onClick={() => setShowForm(false)}
+              aria-label="Fermer le formulaire"
+            >
+              X
+            </button>
+          </div>
+        )}
 
-      {!showForm && <div className="catways-list">{catwaysList}</div>}
-    </main>
+        {!showForm && <div className="catways-list">{catwaysList}</div>}
+      </main>
+    )
   );
 }
