@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import CatwayForm from "./CatwayForm";
 
 export default function CatwayCard({
@@ -13,17 +13,7 @@ export default function CatwayCard({
 }) {
   if (!catway) return null;
   const location = useLocation();
-  const navigate = useNavigate();
   const isCatwaysPage = location.pathname === "/catways";
-
-  const handleViewCatway = () => {
-    sessionStorage.setItem("selectedCatway", catway.catwayNumber);
-    navigate("/catway", {
-      state: {
-        catwayNumber: catway.catwayNumber,
-      },
-    });
-  };
 
   return (
     <article className="catway-card">
@@ -39,7 +29,16 @@ export default function CatwayCard({
 
       <div className="btns">
         {isCatwaysPage && (
-          <button onClick={handleViewCatway}>Voir le catway</button>
+          <Link
+            to="/catway"
+            className="blue"
+            // target="_blank" rel="noopener noreferrer"
+            onClick={() =>
+              sessionStorage.setItem("selectedCatway", catway.catwayNumber)
+            }
+          >
+            Plus d'infos
+          </Link>
         )}
         {!showForm && !isCatwaysPage && (
           <div className="edit-del-btns">

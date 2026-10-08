@@ -30,7 +30,7 @@ export default function UserCard({
           <div className="btns">
             {isUsersPage && (
               <Link to="/user" onClick={sessionStorageUser} className="blue">
-                Voir
+                Plus d'infos
               </Link>
             )}
             {!isUsersPage && (

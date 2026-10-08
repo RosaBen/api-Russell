@@ -85,7 +85,7 @@ export default function Catway({ handleChange }) {
     return <p>Chargement ...</p>;
   }
   return (
-    <main>
+    <main catway-page>
       <Link
         to="/catways"
         // target="_blank" rel="noopener noreferrer"

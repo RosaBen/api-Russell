@@ -101,7 +101,7 @@ export default function Bookings({ handleChange, catways, fetchCatways }) {
           <button onClick={() => setShowForm(false)}>X</button>
         </div>
       )}
-      <div className="booking-list">{bookingList}</div>
+      {!showForm && <div className="booking-list">{bookingList}</div>}
     </main>
   );
 }

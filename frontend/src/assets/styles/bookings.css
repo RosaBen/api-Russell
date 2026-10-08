@@ -28,6 +28,7 @@ main .create-booking-btn {
   flex-direction: column;
   gap: 1.5rem;
   box-shadow: var(--box-shadow);
+  margin-top: 1rem;
 }
 
 .booking-card > p:not(.booking-card p:nth-child(2)),
@@ -67,9 +68,9 @@ main .create-booking-btn {
   text-align: center;
 }
 
-.booking-card .btns button:nth-child(1) {
-  padding: 0.5rem;
-  background: white;
+.booking-card .btns a {
+  padding: 0.5rem 0.8rem;
+  text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
   border-radius: 1rem;
@@ -80,16 +81,4 @@ main .create-booking-btn {
   border-radius: 1rem;
   text-transform: uppercase;
   font-weight: 700;
-}
-
-.booking-card .edit-del-btns button:nth-child(2) {
-  color: white;
-}
-
-.booking-card .edit-del-btns button:nth-child(1) {
-  background: orange;
-}
-
-.booking-card .edit-del-btns button:nth-child(2) {
-  background: red;
 }

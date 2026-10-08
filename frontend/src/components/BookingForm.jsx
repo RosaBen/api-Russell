@@ -11,8 +11,13 @@ export default function BookingForm({
     </option>
   ));
   return (
-    <form className="booking-form" onSubmit={submit} noValidate>
-      <label htmlFor="catwayNumber"></label>
+    <form
+      className="booking-form"
+      onSubmit={submit}
+      id="booking-form"
+      noValidate
+    >
+      <label htmlFor="catwayNumber">Pontons</label>
       <select
         name="catwayNumber"
         id="catwayNumber"
