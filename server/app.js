@@ -5,6 +5,7 @@ import cors from "cors";
 
 import indexRouter from "./routes/index.js";
 import userRouter from "./routes/users.js";
+import authRouter from "./routes/auth.js";
 import catwayRouter from "./routes/catways.js";
 import reservationRouter from "./routes/reservations.js";
 import catwayReservationRouter from "./routes/catwayReservations.js";
@@ -33,6 +34,7 @@ app.use(cookieParser());
 
 app.use("/api", indexRouter);
 app.use("/api/users", userRouter);
+app.use("/api", authRouter);
 app.use("/api/catways", catwayRouter);
 app.use("/api/reservations", reservationRouter);
 app.use("/api/catways/:id/reservations", catwayReservationRouter);
