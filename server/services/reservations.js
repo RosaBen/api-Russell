@@ -10,6 +10,7 @@ import Reservation from "../models/Reservation.js";
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const getAllReservations = async (req, res) => {
   try {
@@ -36,7 +37,7 @@ export const getAllReservations = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const getReservationById = async (req, res) => {
   try {

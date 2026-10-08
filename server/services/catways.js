@@ -10,6 +10,7 @@ import Catway from "../models/Catway.js";
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const createNewCatway = async (req, res) => {
   const { catwayNumber, catwayType, catwayState } = req.body;
@@ -45,6 +46,7 @@ export const createNewCatway = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const getAllCatways = async (req, res) => {
   try {
@@ -71,7 +73,7 @@ export const getAllCatways = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const getCatwayByNumber = async (req, res) => {
   try {
@@ -98,7 +100,7 @@ export const getCatwayByNumber = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const editCatway = async (req, res) => {
   const temp = ({
@@ -146,7 +148,7 @@ export const editCatway = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const deleteCatway = async (req, res) => {
   try {
