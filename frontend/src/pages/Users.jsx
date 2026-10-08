@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../assets/scripts/fetchUsers";
 import UserCard from "../components/UserCard";
+import { Link } from "react-router-dom";
 
 export default function Users() {
   const [loadingUsers, setLoadingUsers] = useState(true);
@@ -29,8 +30,16 @@ export default function Users() {
     <UserCard user={user} key={user._id || user.email} />
   ));
   return (
-    <main>
+    <main className="users-page">
       <h1>Utilisateurs</h1>
+      <Link
+        to="/register"
+        className="green"
+        // target="_blank"
+        // rel="noopener noreferrer"
+      >
+        Ajouter un nouvel utilisateur
+      </Link>
       <div className="users-list">{usersList}</div>
     </main>
   );

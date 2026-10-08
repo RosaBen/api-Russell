@@ -1,21 +1,32 @@
 :root {
-  --text-color: #3d3d3d;
+  --text-color: #0f0f0f;
   --bg-color: #37ae9f;
   --form-color: #f2f2f2;
   --btn-color: #0d0d0d;
   --box-shadow: 0px 2px 2px #d6d6d6;
   --input-color: #d6d6d6;
   --bg-modal: white;
+  --title-color: #175959;
 }
 
 /* Main */
 
 main {
   background: var(--form-color);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  /* position: relative; */
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   z-index: 0;
+}
+
+main h1 {
+  color: var(--title-color);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  text-transform: uppercase;
 }
 
 a {
@@ -27,4 +38,42 @@ a {
 a:hover,
 button:hover {
   opacity: 0.5;
+}
+
+.form-page {
+  display: grid;
+  grid-template-columns: 92% 8%;
+  border: 2px solid var(--bg-color);
+  border-radius: 0.3rem;
+}
+
+.form-page > button {
+  color: var(--bg-color);
+  font-size: large;
+  font-weight: 700;
+  align-self: baseline;
+}
+
+.green {
+  background: var(--bg-color);
+  color: var(--text-color);
+  text-transform: uppercase;
+}
+
+.blue {
+  background: blue;
+  color: white;
+  text-transform: uppercase;
+}
+
+.orange {
+  background: #7a5000;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.red {
+  background: #ad0000;
+  color: white;
+  text-transform: uppercase;
 }

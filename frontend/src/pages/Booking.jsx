@@ -10,7 +10,7 @@ import BookingCard from "../components/BookingCard";
 export default function Booking({ handleChange, catwaysList }) {
   const [booking, setBooking] = useState(null);
   const [loadingBooking, setLoadingBooking] = useState(true);
-  const [isEditing, setIsEditing] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [editForm, setEditForm] = useState({
     catwayNumber: "",
     clientName: "",
@@ -65,7 +65,7 @@ export default function Booking({ handleChange, catwaysList }) {
         setBooking(newData);
         console.log("booking edited");
       }
-      setIsEditing(false);
+      setShowForm(false);
     } catch (error) {
       console.error(error.message);
     }
@@ -94,7 +94,7 @@ export default function Booking({ handleChange, catwaysList }) {
     return <p>Chargement ...</p>;
   }
   return (
-    <main>
+    <main className="booking-page">
       <Link
         to="/reservations"
         // target="_blank" rel="noopener noreferrer"
@@ -108,8 +108,8 @@ export default function Booking({ handleChange, catwaysList }) {
       <BookingCard
         booking={booking}
         handleChange={handleChange}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
+        showForm={showForm}
+        setShowForm={setShowForm}
         handleEdit={handleEditBooking}
         editForm={editForm}
         setEditForm={setEditForm}

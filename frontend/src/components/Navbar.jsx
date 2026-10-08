@@ -17,7 +17,7 @@ export default function Navbar({ classDesktop, onClick }) {
         // rel="noopener noreferrer"
         onClick={onClick}
       >
-        Créer un utilisateur
+        Créer un compte
       </Link>
       <Link
         to="/users"

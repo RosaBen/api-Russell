@@ -1,4 +1,4 @@
-main .create-catway-btn {
+.create-catway-btn {
   background: var(--bg-color);
   padding: 0.5rem 0.8rem;
   border-radius: 0.5rem;
@@ -8,32 +8,19 @@ main .create-catway-btn {
   margin-bottom: 4rem;
 }
 
-main h1 {
-  text-align: center;
-  width: 250px;
-}
-
-main > a {
-  margin-bottom: 3rem;
-  background: var(--bg-color);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid var(--btn-color);
-}
-
 .catway-form-modal {
-  width: 300px;
+  width: 305px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   background: white;
-  padding: 0.5rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 0.3rem;
 }
 
 .catway-form-modal > button {
   background: transparent;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: var(--bg-color);
   font-weight: 700;
 }
@@ -49,6 +36,7 @@ main > a {
 }
 .catway-card {
   border: 2px solid var(--btn-color);
+  margin-top: 1.5rem;
   padding: 1rem;
   background: var(--bg-color);
   border-radius: 1rem;
@@ -86,12 +74,12 @@ main > a {
   text-overflow: ellipsis;
 }
 
-.catway-card button {
+.catway-card button,
+.catway-card .btns a {
   padding: 0.5rem 0.8rem;
   border-radius: 2rem;
   text-transform: uppercase;
   font-weight: bold;
-  color: white;
 }
 
 .catway-card .btns {
@@ -99,10 +87,11 @@ main > a {
   flex-direction: column;
 }
 
-.catway-card .edit-del-btns button:nth-child(1) {
-  background: orange;
+.catway-card .btns a {
+  text-align: center;
+  text-decoration: none;
 }
 
-.catway-card .edit-del-btns button:nth-child(2) {
-  background: red;
+.catway-page > a {
+  text-decoration: underline;
 }

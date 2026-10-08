@@ -5,22 +5,34 @@
   gap: 1rem;
 }
 
-.catway-form label {
+.catway-form > label:first-child {
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.catway-form > label:nth-child(1),
-.catway-form .radio-btns,
+.catway-form > label:first-child,
+.catway-form fieldset,
 .catway-form > label:nth-child(3) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
+.catway-form > label:nth-child(3) {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  gap: 1rem;
+}
+
 .catway-form input,
 .catway-form textarea {
   background: var(--form-color);
   padding: 0.5rem;
+}
+.catway-form fieldset legend {
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .catway-form input {
@@ -29,7 +41,7 @@
 }
 
 .catway-form textarea {
-  width: 200px;
+  width: 280px;
   height: 200px;
 }
 

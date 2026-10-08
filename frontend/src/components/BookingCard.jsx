@@ -1,11 +1,11 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import BookingForm from "./BookingForm";
 
 export default function BookingCard({
   booking,
   handleChange,
-  setIsEditing,
-  isEditing,
+  setShowForm,
+  showForm,
   handleEdit,
   catwaysList,
   editForm,
@@ -14,7 +14,7 @@ export default function BookingCard({
 }) {
   if (!booking) return null;
   const location = useLocation();
-  const navigate = useNavigate();
+
   const isBookingsPage = location.pathname === "/reservations";
 
   const formatDate = (value) => {
@@ -26,15 +26,10 @@ export default function BookingCard({
   };
 
   const bookingNumber = `Cat${booking.catwayNumber}-${String(new Date(booking.endDate).getDate()).padStart(2, "0")}-${String(new Date(booking.endDate).getMonth() + 1).padStart(2, "0")}-${new Date(booking.endDate).getFullYear()}`;
-  const handleViewBooking = () => {
-    sessionStorage.setItem("selectedBookingId", booking._id);
-    sessionStorage.setItem("selectedBookingCatwayNumber", booking.catwayNumber);
-    navigate("/reservation");
-  };
 
   return (
     <>
-      {isEditing && (
+      {showForm && (
         <BookingForm
           catwaysList={catwaysList}
           submitText="Modifier"
@@ -43,7 +38,7 @@ export default function BookingCard({
           form={editForm}
         />
       )}
-      {!isEditing && booking && (
+      {!showForm && booking && (
         <article className="booking-card">
           <p>
             Réservation: <span>{bookingNumber}</span>
@@ -69,12 +64,24 @@ export default function BookingCard({
           </div>
           <div className="btns">
             {isBookingsPage && (
-              <button onClick={handleViewBooking}>Voir la réservation</button>
+              <Link
+                to="/reservation"
+                className="blue"
+                onClick={() => {
+                  sessionStorage.setItem("selectedBookingId", booking._id);
+                  sessionStorage.setItem(
+                    "selectedBookingCatwayNumber",
+                    booking.catwayNumber,
+                  );
+                }}
+              >
+                Plus d'infos
+              </Link>
             )}
             {!isBookingsPage && (
               <div className="edit-del-btns">
                 <button
-                  className="edit-btn"
+                  className="edit-btn orange"
                   onClick={() => {
                     setEditForm({
                       catwayNumber: booking.catwayNumber,
@@ -83,12 +90,12 @@ export default function BookingCard({
                       startDate: booking.startDate.slice(0, 10),
                       endDate: booking.endDate.slice(0, 10),
                     });
-                    setIsEditing(true);
+                    setShowForm(true);
                   }}
                 >
                   Modifier
                 </button>
-                <button className="delete-btn" onClick={handleDelete}>
+                <button className="delete-btn red" onClick={handleDelete}>
                   Supprimer
                 </button>
               </div>
