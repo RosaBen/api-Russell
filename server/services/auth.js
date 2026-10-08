@@ -67,3 +67,28 @@ export const authenticate = async (req, res) => {
     return res.status(501).json({ message: "server error" });
   }
 };
+
+/**
+ * logout
+ *
+ * @async
+ * @route GET/logout
+ * @param {Request} req 
+ * @param {Response} res 
+ * @returns {Promise} 
+ */
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict"
+    });
+
+    return res.status(200).json({ message: "session terminated" });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(501).json({ message: "server error" });
+  }
+};
