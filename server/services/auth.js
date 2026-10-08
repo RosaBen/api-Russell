@@ -24,6 +24,7 @@ export function generateToken (user) {
  * @param {Request} req 
  * @param {Response} res 
  * @returns {Promise} 
+ * @access Public
  */
 export const authenticate = async (req, res) => {
   const { email, password } = req.body;
@@ -76,6 +77,7 @@ export const authenticate = async (req, res) => {
  * @param {Request} req 
  * @param {Response} res 
  * @returns {Promise} 
+ * @access Protected
  */
 export const logout = async (req, res) => {
   try {

@@ -9,7 +9,7 @@ import Catway from "../models/Catway.js";
  * @export
  * @async
  * @param {catwayNumber} catwayNumber 
- * @returns {number} 
+ * @returns {number}
  */
 async function findCatwayNumber (catwayNumber) {
   const catway = await Catway.findOne({ catwayNumber });
@@ -32,6 +32,7 @@ async function findCatwayNumber (catwayNumber) {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const getCatwayReservations = async (req, res) => {
   try {
@@ -64,6 +65,7 @@ export const getCatwayReservations = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const getCatwayReservationByID = async (req, res) => {
   try {
@@ -95,6 +97,7 @@ export const getCatwayReservationByID = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const createNewCatwayReservation = async (req, res) => {
   const { clientName, boatName, startDate, endDate } = req.body;
@@ -138,7 +141,7 @@ export const createNewCatwayReservation = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const editExistingReservation = async (req, res) => {
   const { catwayNumber, clientName, boatName, startDate, endDate } = req.body;
@@ -211,7 +214,7 @@ export const editExistingReservation = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const deleteCatwayReservation = async (req, res) => {
   try {

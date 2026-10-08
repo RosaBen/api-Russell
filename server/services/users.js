@@ -9,6 +9,7 @@ import User from "../models/User.js";
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
+ * @access Public
  */
 export const createNewUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -43,6 +44,7 @@ export const createNewUser = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
+ * @access Protected
  */
 export const getAllUsers = async (req, res) => {
   try {
@@ -70,7 +72,7 @@ export const getAllUsers = async (req, res) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const getUserByEmail = async (req, res) => {
   try {
@@ -99,7 +101,7 @@ export const getUserByEmail = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const editUser = async (req, res) => {
   const temp = ({
@@ -144,7 +146,7 @@ export const editUser = async (req, res) => {
  * @param {import("express").Response} res 
  * @param {import("express").NextFunction} next 
  * @returns {Promise} 
- * @access Private
+ * @access Protected
  */
 export const deleteUser = async (req, res) => {
   try {
