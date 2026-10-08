@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
 import UserCard from "../components/UserCard";
 
-export default function User({ handleChange, errors }) {
+export default function User({ handleChange, errors, handleUserError }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -38,6 +38,7 @@ export default function User({ handleChange, errors }) {
 
   const handleEdit = async (e) => {
     e.preventDefault();
+    handleUserError(editForm);
     try {
       const currentEmail = email;
       await editUser(currentEmail, editForm);

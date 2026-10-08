@@ -47,10 +47,16 @@ export default function Catways({
     return <p>Chargement ...</p>;
   }
   return (
-    <main>
+    <main className="catways-page">
       <h1>Liste des pontons</h1>
       {!showForm && (
-        <button onClick={() => setShowForm(true)} className="create-catway-btn">
+        <button
+          onClick={() => setShowForm(true)}
+          className="create-catway-btn"
+          aria-expanded={showForm}
+          aria-label="Ajouter un ponton"
+          aria-controls="catway-form"
+        >
           Ajouter un ponton
         </button>
       )}
@@ -62,11 +68,16 @@ export default function Catways({
             submit={handleCreateCatway}
             form={catwayForm}
           />
-          <button onClick={() => setShowForm(false)}>X</button>
+          <button
+            onClick={() => setShowForm(false)}
+            aria-label="Fermer le formulaire"
+          >
+            X
+          </button>
         </div>
       )}
 
-      <div className="catways-list">{catwaysList}</div>
+      {!showForm && <div className="catways-list">{catwaysList}</div>}
     </main>
   );
 }

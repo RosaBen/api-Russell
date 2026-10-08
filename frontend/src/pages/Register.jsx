@@ -3,7 +3,7 @@ import { createUser } from "../assets/scripts/fetchUsers";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Register({ handleChange, errors, setErrors }) {
+export default function Register({ handleChange, errors, handleUserError }) {
   const [registerForm, setRegisterForm] = useState({
     username: "",
     email: "",
@@ -13,24 +13,7 @@ export default function Register({ handleChange, errors, setErrors }) {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const newErrors = {};
-    if (!registerForm.username.trim()) {
-      newErrors.username =
-        "Le nom d'utilisateur est obligatoire et doit contenir entre 3 et 15 caractères";
-    }
-    if (!registerForm.email.trim()) {
-      newErrors.email =
-        "L'email' est obligatoire et doit avoir un format valide";
-    }
-
-    if (!registerForm.password.trim()) {
-      newErrors.password =
-        "Le mot de passe est obligatoire avec minimum 6 caractères";
-    }
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) {
-      return;
-    }
+    handleUserError(registerForm);
     try {
       await createUser(registerForm);
       console.log("user created");

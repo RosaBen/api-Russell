@@ -21,10 +21,10 @@ import "./assets/styles/app.css";
 import "./assets/styles/header.css";
 import "./assets/styles/users.css";
 import "./assets/styles/userform.css";
-// import "./assets/styles/catways.css";
-// import "./assets/styles/catwayForm.css";
-// import "./assets/styles/bookings.css";
-// import "./assets/styles/bookingForm.css";
+import "./assets/styles/catways.css";
+import "./assets/styles/catwayForm.css";
+import "./assets/styles/bookings.css";
+import "./assets/styles/bookingForm.css";
 import { getAllCatways } from "./assets/scripts/fetchCatways";
 
 function App() {
@@ -56,6 +56,27 @@ function App() {
     fetchCatways();
   }, []);
 
+  function handleUserError(form) {
+    const newErrors = {};
+    if (!form.username.trim()) {
+      newErrors.username =
+        "Le nom d'utilisateur est obligatoire et doit contenir entre 3 et 15 caractères";
+    }
+    if (!form.email.trim()) {
+      newErrors.email =
+        "L'email' est obligatoire et doit avoir un format valide";
+    }
+
+    if (!form.password.trim()) {
+      newErrors.password =
+        "Le mot de passe est obligatoire avec minimum 6 caractères";
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+  }
+
   const catwaysList = catways.map((catway) => catway.catwayNumber);
 
   return (
@@ -67,12 +88,24 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/register"
-          element={<Register handleChange={handleChange} errors={errors} />}
+          element={
+            <Register
+              handleChange={handleChange}
+              errors={errors}
+              handleUserError={handleUserError}
+            />
+          }
         />
         <Route path="/users" element={<Users handleChange={handleChange} />} />
         <Route
           path="/user"
-          element={<User handleChange={handleChange} errors={errors} />}
+          element={
+            <User
+              handleChange={handleChange}
+              errors={errors}
+              handleUserError={handleUserError}
+            />
+          }
         />
         <Route
           path="/catways"

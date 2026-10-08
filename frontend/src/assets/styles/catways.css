@@ -13,14 +13,6 @@ main h1 {
   width: 250px;
 }
 
-main > a {
-  margin-bottom: 3rem;
-  background: var(--bg-color);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid var(--btn-color);
-}
-
 .catway-form-modal {
   width: 300px;
   display: flex;
@@ -91,18 +83,9 @@ main > a {
   border-radius: 2rem;
   text-transform: uppercase;
   font-weight: bold;
-  color: white;
 }
 
 .catway-card .btns {
   display: flex;
   flex-direction: column;
-}
-
-.catway-card .edit-del-btns button:nth-child(1) {
-  background: orange;
-}
-
-.catway-card .edit-del-btns button:nth-child(2) {
-  background: red;
 }

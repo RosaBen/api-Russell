@@ -1,6 +1,6 @@
 export default function CatwayForm({ submitText, inputChange, submit, form }) {
   return (
-    <form className="catway-form" onSubmit={submit}>
+    <form className="catway-form" onSubmit={submit} id="catway-form" noValidate>
       <label>
         Numéro du ponton
         <input
@@ -13,7 +13,8 @@ export default function CatwayForm({ submitText, inputChange, submit, form }) {
           required
         />
       </label>
-      <div className="radio-btns">
+      <fieldset className="radio-btns">
+        <legend>Longueur du ponton</legend>
         <label>
           <input
             type="radio"
@@ -21,6 +22,7 @@ export default function CatwayForm({ submitText, inputChange, submit, form }) {
             value="long"
             checked={form.catwayType === "long"}
             onChange={inputChange}
+            required
           />
           Ponton long
         </label>
@@ -34,7 +36,7 @@ export default function CatwayForm({ submitText, inputChange, submit, form }) {
           />
           Ponton court
         </label>
-      </div>
+      </fieldset>
       <label>
         Etat du ponton
         <textarea

@@ -65,3 +65,15 @@ button:hover {
   color: white;
   text-transform: uppercase;
 }
+
+.orange {
+  background: #7a5000;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.red {
+  background: #ad0000;
+  color: white;
+  text-transform: uppercase;
+}

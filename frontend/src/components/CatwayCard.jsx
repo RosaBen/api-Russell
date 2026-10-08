@@ -44,7 +44,7 @@ export default function CatwayCard({
         {!showForm && !isCatwaysPage && (
           <div className="edit-del-btns">
             <button
-              className="edit-btn"
+              className="edit-btn orange"
               onClick={() => {
                 setEditForm({
                   catwayNumber: catway.catwayNumber,
@@ -56,7 +56,7 @@ export default function CatwayCard({
             >
               Modifier
             </button>
-            <button className="delete-btn" onClick={handleDelete}>
+            <button className="delete-btn red" onClick={handleDelete}>
               Supprimer
             </button>
           </div>

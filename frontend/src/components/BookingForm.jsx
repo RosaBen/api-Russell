@@ -11,11 +11,14 @@ export default function BookingForm({
     </option>
   ));
   return (
-    <form className="booking-form" onSubmit={submit}>
+    <form className="booking-form" onSubmit={submit} noValidate>
+      <label htmlFor="catwayNumber"></label>
       <select
         name="catwayNumber"
+        id="catwayNumber"
         value={form.catwayNumber}
         onChange={inputChange}
+        required
       >
         <option value="" disabled>
           -- Sélectionner un ponton --
@@ -32,6 +35,7 @@ export default function BookingForm({
             name="clientName"
             value={form.clientName}
             onChange={inputChange}
+            required
           />
         </label>
 
@@ -43,6 +47,7 @@ export default function BookingForm({
             name="boatName"
             value={form.boatName}
             onChange={inputChange}
+            required
           />
         </label>
       </fieldset>
@@ -55,16 +60,18 @@ export default function BookingForm({
             name="startDate"
             value={form.startDate}
             onChange={inputChange}
+            required
           />
         </label>
 
         <label>
-          Date départ{" "}
+          Date départ
           <input
             type="date"
             name="endDate"
             value={form.endDate}
             onChange={inputChange}
+            required
           />
         </label>
       </fieldset>

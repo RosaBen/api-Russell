@@ -1,15 +1,13 @@
-.register-page > a {
+.register-page > a,
+.user-page > a {
   text-decoration: underline;
 }
-.users-page a {
+.users-page > a {
   margin-bottom: 1rem;
   padding: 0.5rem 0.8rem;
   border-radius: 1rem;
   font-weight: 700;
   text-align: center;
-}
-.user-page > a {
-  text-decoration: underline;
 }
 
 .user-card .form-page {
@@ -53,11 +51,6 @@
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.btns > button:nth-child(1) {
-  background: blue;
-  color: white;
 }
 
 .edit-del-btns {
