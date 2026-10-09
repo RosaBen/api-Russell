@@ -54,7 +54,6 @@ export default function User({
       } else {
         const newData = await getUser(currentEmail);
         setUser(newData);
-        console.log("user modified");
       }
 
       setShowEditForm(false);
@@ -69,7 +68,6 @@ export default function User({
       await deleteUser(email);
       sessionStorage.removeItem("selectedUser");
       navigate("/users");
-      console.log("user deleted");
     } catch (error) {
       console.error(error.message);
     }

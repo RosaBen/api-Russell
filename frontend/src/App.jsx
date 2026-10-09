@@ -1,5 +1,5 @@
 // Import React components
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // Import pages
@@ -29,7 +29,7 @@ import "./assets/styles/catwayForm.css";
 import "./assets/styles/bookings.css";
 import "./assets/styles/bookingForm.css";
 import { getAllCatways } from "./assets/scripts/fetchCatways";
-import { getUser } from "./assets/scripts/fetchUsers";
+import { getUser, logout } from "./assets/scripts/fetchUsers";
 import { getAllBookings } from "./assets/scripts/fetchBookings";
 
 function App() {
@@ -41,6 +41,8 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [currentBookings, setCurrentBookings] = useState([]);
+  const navigate = useNavigate();
+
   const handleChange = (setForm) => (e) => {
     setForm((prev) => ({
       ...prev,
@@ -101,6 +103,23 @@ function App() {
     }
   }
 
+  async function handleLogout() {
+    try {
+      await logout();
+      setCurrentUser(null);
+      setIsConnected(false);
+      sessionStorage.removeItem("logged");
+      sessionStorage.removeItem("selectedUser");
+      sessionStorage.removeItem("selectedBookingId");
+      sessionStorage.removeItem("selectedBookingCatwayNumber");
+      sessionStorage.removeItem("selectedCatway");
+      sessionStorage.removeItem("prevPage");
+      navigate("/");
+    } catch (error) {
+      console.error("login error", error);
+    }
+  }
+
   useEffect(() => {
     if (!isConnected) return;
     fetchCatways();
@@ -139,6 +158,7 @@ function App() {
             showMenu={showMenu}
             setShowMenu={setShowMenu}
             isConnected={isConnected}
+            logout={handleLogout}
           />
         }
       >
@@ -160,15 +180,15 @@ function App() {
               handleChange={handleChange}
               setIsConnected={setIsConnected}
               getCurrentUser={getCurrentUser}
-              currentUser={currentUser}
-              isConnected={isConnected}
               errors={errors}
             />
           }
         />
         <Route
           path="dashboard"
-          element={<DashboardLayout isConnected={isConnected} />}
+          element={
+            <DashboardLayout isConnected={isConnected} logout={handleLogout} />
+          }
         >
           <Route
             index

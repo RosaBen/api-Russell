@@ -22,7 +22,7 @@ export default function Catways({
     e.preventDefault();
     try {
       const newCatway = await createCatway(catwayForm);
-      console.log("catway created");
+
       setCatways((prev) => [newCatway, ...prev]);
       fetchCatways();
       setCatwayForm({

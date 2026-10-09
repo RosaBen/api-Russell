@@ -57,7 +57,6 @@ export default function Catway({ handleChange }) {
       } else {
         const newData = await getCatway(currentCatwayNumber);
         setCatway(newData);
-        console.log("catway edited");
       }
       setShowForm(false);
     } catch (error) {
@@ -71,7 +70,6 @@ export default function Catway({ handleChange }) {
       await deleteCatway(catwayNumber);
       sessionStorage.removeItem("selectedCatway");
       navigate("/catways");
-      console.log("catway deleted");
     } catch (error) {
       console.error(error.message);
     }

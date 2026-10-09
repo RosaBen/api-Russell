@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { login } from "../assets/scripts/fetchUsers";
 import UserForm from "../components/dashboard/UserForm";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,6 @@ export default function Login({
   setIsConnected,
   errors,
   getCurrentUser,
-  currentUser,
-  isConnected,
 }) {
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -23,7 +21,7 @@ export default function Login({
     try {
       await login(loginForm);
       sessionStorage.setItem("logged", loginForm.email);
-      console.log("user connected");
+
       setIsConnected(true);
       await getCurrentUser();
       setLoginForm({

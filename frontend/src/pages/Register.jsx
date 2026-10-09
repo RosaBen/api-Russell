@@ -16,7 +16,7 @@ export default function Register({ handleChange, errors, handleUserError }) {
     handleUserError(registerForm);
     try {
       await createUser(registerForm);
-      console.log("user created");
+
       setRegisterForm({
         username: "",
         email: "",

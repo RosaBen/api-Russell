@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import { TiThMenu } from "react-icons/ti";
-export default function Header({ showMenu, setShowMenu, isConnected }) {
+export default function Header({ showMenu, setShowMenu, isConnected, logout }) {
   return (
     <header>
       <h1>Russell's Catways</h1>
@@ -21,6 +21,7 @@ export default function Header({ showMenu, setShowMenu, isConnected }) {
               onClick={() => setShowMenu(false)}
               isConnected={isConnected}
               classNav="mobile-nav"
+              logout={logout}
             />
             <button
               onClick={() => setShowMenu(false)}
@@ -31,7 +32,11 @@ export default function Header({ showMenu, setShowMenu, isConnected }) {
           </div>
         </>
       )}
-      <Navbar classNav="desktop-nav" isConnected={isConnected} />
+      <Navbar
+        classNav="desktop-nav"
+        isConnected={isConnected}
+        logout={logout}
+      />
     </header>
   );
 }

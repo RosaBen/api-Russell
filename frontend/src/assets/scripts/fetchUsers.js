@@ -27,6 +27,25 @@ export async function login (credentials) {
 
 }
 
+/**
+ * 
+ * 
+ * @function logout
+ * @returns promise
+ */
+export async function logout () {
+  const response = await fetch(`${API_URL}/logout`, {
+    method: "get",
+    credentials: "include"
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || "erreur lors de la déconnexion");
+  }
+
+  return data;
+}
 
 // USERS
 /**

@@ -1,11 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IoMdReturnLeft } from "react-icons/io";
 
-export default function Dashboard({
-  handleChange,
-  currentUser,
-  currentBookings,
-}) {
+export default function Dashboard({ currentUser, currentBookings }) {
   const today = new Date();
   const navigate = useNavigate();
 
@@ -15,10 +11,11 @@ export default function Dashboard({
       <button
         className="previous-page-btn"
         onClick={() => {
-          if (window.history.length > 1) {
-            navigate(-1);
+          const prevPage = sessionStorage.getItem("prevPage");
+          if (prevPage && prevPage !== "/login") {
+            navigate(prevPage);
           } else {
-            navigate("/home");
+            navigate("/");
           }
         }}
       >

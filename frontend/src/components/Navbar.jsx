@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Navbar({ classNav, onClick, isConnected }) {
+export default function Navbar({ classNav, onClick, isConnected, logout }) {
   const activeStyle = {
     fontWeight: "bold",
     textDecoration: "underline",
@@ -49,7 +49,9 @@ export default function Navbar({ classNav, onClick, isConnected }) {
           >
             Tableau de bord
           </NavLink>
-          <button className="logout-btn">Déconnexion</button>
+          <button className="logout-btn" onClick={logout}>
+            Déconnexion
+          </button>
         </>
       )}
     </nav>

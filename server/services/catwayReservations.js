@@ -37,7 +37,7 @@ async function findCatwayNumber (catwayNumber) {
 export const getCatwayReservations = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     const catway = await findCatwayNumber(id);
 
     const reservations = await Reservation.find({ catwayNumber: catway.catwayNumber });

@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 
-export default function DashboardLayout({ isConnected }) {
+export default function DashboardLayout({ isConnected, logout }) {
   const activeStyle = {
     fontWeight: "bold",
     textDecoration: "underline",
@@ -36,7 +36,9 @@ export default function DashboardLayout({ isConnected }) {
               Réservations
             </NavLink>
           </div>
-          <button className="dashboard-logout-btn">Déconnexion</button>
+          <button className="dashboard-logout-btn" onClick={logout}>
+            Déconnexion
+          </button>
         </nav>
         <Outlet />
       </>
