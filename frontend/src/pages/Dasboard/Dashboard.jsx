@@ -13,6 +13,7 @@ export default function Dashboard({
     <main className="dashboard-page">
       <h1>Tableau de Bord</h1>
       <button
+        className="previous-page-btn"
         onClick={() => {
           if (window.history.length > 1) {
             navigate(-1);
@@ -23,9 +24,9 @@ export default function Dashboard({
       >
         <IoMdReturnLeft /> Retour à la page précédente
       </button>
-      <p>
+      <h2>
         Welcome <span>{currentUser.username}</span>
-      </p>
+      </h2>
       <div className="dashboard-infos">
         <p>{currentUser.email}</p>
         <p>
@@ -49,25 +50,35 @@ export default function Dashboard({
           return (
             <div className="current-booking" key={booking._id}>
               <p>Ponton {booking.catwayNumber}</p>
-              <p>Client: {booking.clientName}</p>
-              <p>Bateau: {booking.boatName}</p>
+              <p>
+                Client: <span>{booking.clientName}</span>
+              </p>
+              <p>
+                Bateau: <span>{booking.boatName}</span>
+              </p>
               <p>
                 Date entrée:
-                {new Date(booking.startDate).toLocaleDateString("fr-FR", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
+                <span>
+                  {" "}
+                  {new Date(booking.startDate).toLocaleDateString("fr-FR", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
               </p>
               <p>
                 Date sortie:
-                {new Date(booking.endDate).toLocaleDateString("fr-FR", {
-                  weekday: "long",
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
+                <span>
+                  {" "}
+                  {new Date(booking.endDate).toLocaleDateString("fr-FR", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </span>
               </p>
             </div>
           );

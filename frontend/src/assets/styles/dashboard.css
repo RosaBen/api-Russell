@@ -19,3 +19,74 @@
   text-transform: uppercase;
   font-weight: 700;
 }
+
+.previous-page-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-page > h2 {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-page h2 span {
+  color: var(--bg-color);
+}
+
+.dashboard-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--bg-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-infos p:nth-child(2) {
+  font-weight: 700;
+}
+
+.dashboard-infos a {
+  text-decoration: none;
+}
+
+.current-bookings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.current-bookings h2 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.current-booking {
+  display: flex;
+  flex-direction: column;
+
+  border: 3px solid var(--bg-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.current-booking p {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.current-booking p span {
+  font-weight: 300;
+}
+
+.current-booking p:first-child {
+  align-self: center;
+  text-transform: uppercase;
+}
