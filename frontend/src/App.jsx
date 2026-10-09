@@ -40,7 +40,7 @@ function App() {
   const [loadingCatways, setLoadingCatways] = useState(true);
   const [isConnected, setIsConnected] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [bookings, setBookings] = useState([]);
+  const [currentBookings, setCurrentBookings] = useState([]);
   const handleChange = (setForm) => (e) => {
     setForm((prev) => ({
       ...prev,
@@ -65,7 +65,6 @@ function App() {
     const loggedUser = sessionStorage.getItem("logged");
     try {
       if (!loggedUser) return;
-      console.log("logged", loggedUser);
       const user = await getUser(loggedUser);
       setCurrentUser(user);
     } catch (error) {
@@ -74,32 +73,39 @@ function App() {
     }
   }
 
-  // async function getCurrentBookings() {
-  //   const now = new Date();
-  //   const today = [
-  //     now.getFullYear(),
-  //     String(now.getMonth() + 1).padStart(2, "0"),
-  //     String(now.getDate()).padStart(2, "0"),
-  //   ].join("-");
-  //   try {
-  //     const data = await getAllBookings();
-  //     console.log(data);
-  //     const currentBookings = data.filter((booking) => {
-  //       const startDate = booking.startDate.slice(0, 10);
-  //       const endDate = booking.endDate.slice(0, 10);
-  //       return startDate <= today && endDate >= today;
-  //     });
-  //     setBookings(currentBookings);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // }
+  async function getCurrentBookings() {
+    const now = new Date();
+    const today = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0"),
+    ].join("-");
+
+    try {
+      const data = await getAllBookings();
+      const todayBookings = data.filter((booking) => {
+        if (!booking.startDate || !booking.endDate) {
+          console.warn("dates manquantes", booking);
+          return false;
+        }
+
+        const startDate = booking.startDate.slice(0, 10);
+        const endDate = booking.endDate.slice(0, 10);
+
+        return startDate <= today && endDate >= today;
+      });
+      setCurrentBookings(todayBookings);
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    }
+  }
 
   useEffect(() => {
     if (!isConnected) return;
     fetchCatways();
-    // getCurrentBookings();
-  }, []);
+    getCurrentBookings();
+  }, [isConnected]);
 
   function handleUserError(form) {
     const newErrors = {};
@@ -121,9 +127,9 @@ function App() {
       return;
     }
   }
-  console.log("app", currentUser, isConnected);
+
   const catwaysList = catways.map((catway) => catway.catwayNumber);
-  // if (error) return <p role="alert">{error}</p>;
+  if (error) return <p role="alert">{error}</p>;
   return (
     <Routes>
       <Route
@@ -170,6 +176,7 @@ function App() {
               <Dashboard
                 handleChange={handleChange}
                 currentUser={currentUser}
+                currentBookings={currentBookings}
               />
             }
           />
