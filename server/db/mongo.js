@@ -11,7 +11,7 @@ export const initClientDbConnection = async () => {
       throw new Error("fichier.env non trouvé");
     }
     await mongoose.connect(process.env.URL_MONGO, clientOptions);
-    console.log("connecté");
+
 
   } catch (error) {
     console.error(error.message);

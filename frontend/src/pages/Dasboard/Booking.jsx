@@ -4,8 +4,8 @@ import {
   getBooking,
   editBooking,
   deleteBooking,
-} from "../assets/scripts/fetchBookings";
-import BookingCard from "../components/BookingCard";
+} from "../../assets/scripts/fetchBookings";
+import BookingCard from "../../components/dashboard/BookingCard";
 
 export default function Booking({ handleChange, catwaysList }) {
   const [booking, setBooking] = useState(null);
@@ -63,7 +63,6 @@ export default function Booking({ handleChange, catwaysList }) {
           currentBookingId,
         );
         setBooking(newData);
-        console.log("booking edited");
       }
       setShowForm(false);
     } catch (error) {
@@ -74,13 +73,10 @@ export default function Booking({ handleChange, catwaysList }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      console.log(currentBookingCatwayNumber);
       await deleteBooking(currentBookingId, currentBookingCatwayNumber);
       sessionStorage.removeItem("selectedBookingCatwayNumber");
       sessionStorage.removeItem("selectedBookingId");
       navigate("/reservations");
-
-      console.log("booking deleted");
     } catch (error) {
       console.error(error.message);
     }

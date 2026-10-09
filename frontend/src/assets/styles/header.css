@@ -27,7 +27,7 @@ header .icon {
 
 .modal-menu {
   position: absolute;
-  bottom: -13.75rem;
+  bottom: -7.5rem;
   background: white;
   left: 0;
   width: 100%;
@@ -45,10 +45,12 @@ header .icon {
   padding-right: 0.5rem;
 }
 
-.modal-menu nav {
+.mobile-nav {
+  width: 350px;
   display: flex;
   flex-direction: column;
-  margin: 1rem 1rem 2rem;
+  padding-top: 1rem;
+  margin: 0 1rem 1rem;
   gap: 1rem;
 }
 
@@ -57,6 +59,20 @@ header .icon {
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+.logout-btn {
+  background: transparent;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--bg-color);
+  align-self: center;
+}
+
+nav a {
+  text-decoration: none;
 }
 
 /* Footer */

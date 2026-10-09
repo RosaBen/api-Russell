@@ -1,4 +1,4 @@
-import UserForm from "../components/UserForm";
+import UserForm from "../components/dashboard/UserForm";
 import { createUser } from "../assets/scripts/fetchUsers";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ export default function Register({ handleChange, errors, handleUserError }) {
     handleUserError(registerForm);
     try {
       await createUser(registerForm);
-      console.log("user created");
+
       setRegisterForm({
         username: "",
         email: "",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../assets/scripts/fetchUsers";
-import UserCard from "../components/UserCard";
+import { getAllUsers } from "../../assets/scripts/fetchUsers";
+import UserCard from "../../components/dashboard/UserCard";
 import { Link } from "react-router-dom";
 
 export default function Users() {

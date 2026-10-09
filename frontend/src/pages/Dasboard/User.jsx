@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
-import UserCard from "../components/UserCard";
+import { getUser, editUser, deleteUser } from "../../assets/scripts/fetchUsers";
+import UserCard from "../../components/dashboard/UserCard";
 
-export default function User({ handleChange, errors, handleUserError }) {
+export default function User({
+  handleChange,
+  errors,
+  handleUserError,
+  isConnected,
+}) {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -49,7 +54,6 @@ export default function User({ handleChange, errors, handleUserError }) {
       } else {
         const newData = await getUser(currentEmail);
         setUser(newData);
-        console.log("user modified");
       }
 
       setShowEditForm(false);
@@ -64,7 +68,6 @@ export default function User({ handleChange, errors, handleUserError }) {
       await deleteUser(email);
       sessionStorage.removeItem("selectedUser");
       navigate("/users");
-      console.log("user deleted");
     } catch (error) {
       console.error(error.message);
     }
@@ -89,6 +92,7 @@ export default function User({ handleChange, errors, handleUserError }) {
         editForm={editForm}
         handleDelete={handleDelete}
         errors={errors}
+        isConnected={isConnected}
       />
       {!showEditForm && (
         <Link

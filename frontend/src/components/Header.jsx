@@ -1,19 +1,12 @@
 import Navbar from "./Navbar";
 import { TiThMenu } from "react-icons/ti";
-export default function Header({ showMenu, setShowMenu }) {
-  const handleMenu = () => {
-    setShowMenu(true);
-  };
-
-  const handleClose = () => {
-    setShowMenu(false);
-  };
+export default function Header({ showMenu, setShowMenu, isConnected, logout }) {
   return (
     <header>
       <h1>Russell's Catways</h1>
       {!showMenu && (
         <button
-          onClick={handleMenu}
+          onClick={() => setShowMenu(true)}
           aria-label="Ouvrir le menu"
           aria-expanded={showMenu}
           aria-controls="modal-menu"
@@ -24,14 +17,26 @@ export default function Header({ showMenu, setShowMenu }) {
       {showMenu && (
         <>
           <div className="modal-menu">
-            <Navbar onClick={handleClose} />
-            <button onClick={handleClose} aria-label="Fermer le menu">
+            <Navbar
+              onClick={() => setShowMenu(false)}
+              isConnected={isConnected}
+              classNav="mobile-nav"
+              logout={logout}
+            />
+            <button
+              onClick={() => setShowMenu(false)}
+              aria-label="Fermer le menu"
+            >
               X
             </button>
           </div>
         </>
       )}
-      <Navbar classDesktop="desktop-nav" />
+      <Navbar
+        classNav="desktop-nav"
+        isConnected={isConnected}
+        logout={logout}
+      />
     </header>
   );
 }

@@ -4,8 +4,8 @@ import {
   getCatway,
   EditCatway,
   deleteCatway,
-} from "../assets/scripts/fetchCatways";
-import CatwayCard from "../components/CatwayCard";
+} from "../../assets/scripts/fetchCatways";
+import CatwayCard from "../../components/dashboard/CatwayCard";
 
 export default function Catway({ handleChange }) {
   const [catway, setCatway] = useState(null);
@@ -57,7 +57,6 @@ export default function Catway({ handleChange }) {
       } else {
         const newData = await getCatway(currentCatwayNumber);
         setCatway(newData);
-        console.log("catway edited");
       }
       setShowForm(false);
     } catch (error) {
@@ -71,7 +70,6 @@ export default function Catway({ handleChange }) {
       await deleteCatway(catwayNumber);
       sessionStorage.removeItem("selectedCatway");
       navigate("/catways");
-      console.log("catway deleted");
     } catch (error) {
       console.error(error.message);
     }
