@@ -4,8 +4,8 @@ import {
   getCatway,
   EditCatway,
   deleteCatway,
-} from "../assets/scripts/fetchCatways";
-import CatwayCard from "../components/CatwayCard";
+} from "../../assets/scripts/fetchCatways";
+import CatwayCard from "../../components/dashboard/CatwayCard";
 
 export default function Catway({ handleChange }) {
   const [catway, setCatway] = useState(null);

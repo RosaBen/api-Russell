@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../assets/scripts/fetchUsers";
-import UserForm from "../components/UserForm";
+import UserForm from "../components/dashboard/UserForm";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({
   handleChange,
   setIsConnected,
-  setCurrentUser,
   errors,
+  getCurrentUser,
+  currentUser,
+  isConnected,
 }) {
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -20,22 +22,26 @@ export default function Login({
     e.preventDefault();
     try {
       await login(loginForm);
-      const currentEmail = loginForm.email;
-      sessionStorage.setItem("logged", currentEmail);
-      setCurrentUser(currentEmail);
+      sessionStorage.setItem("logged", loginForm.email);
       console.log("user connected");
       setIsConnected(true);
+      await getCurrentUser();
       setLoginForm({
         email: "",
         password: "",
       });
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       sessionStorage.removeItem("logged");
-      setCurrentUser(null);
+      setIsConnected(false);
+      setLoginForm({
+        email: "",
+        password: "",
+      });
       console.error("login error", error);
     }
   };
+
   return (
     <main className="login-page">
       <h1>Connectez vous</h1>

@@ -40,6 +40,43 @@ button:hover {
   opacity: 0.5;
 }
 
+/* Home */
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.home-page h1 {
+  align-self: center;
+}
+
+.home-page h2 {
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+}
+
+.home-page ul {
+  padding-left: 2rem;
+}
+
+.home-page li {
+  list-style: disc;
+}
+
+.home-connexion-btn {
+  background: var(--bg-color);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 1rem;
+  color: var(--text-color);
+  align-self: center;
+}
+
+/* Form */
 .form-page {
   display: grid;
   grid-template-columns: 92% 8%;

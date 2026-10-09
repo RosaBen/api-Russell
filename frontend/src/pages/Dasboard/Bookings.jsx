@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { getAllBookings, createBooking } from "../assets/scripts/fetchBookings";
-import BookingCard from "../components/BookingCard";
-import BookingForm from "../components/BookingForm";
+import {
+  getAllBookings,
+  createBooking,
+} from "../../assets/scripts/fetchBookings";
+import BookingCard from "../../components/dashboard/BookingCard";
+import BookingForm from "../../components/dashboard/BookingForm";
 
 export default function Bookings({ handleChange, catways, fetchCatways }) {
   const [bookings, setBookings] = useState([]);

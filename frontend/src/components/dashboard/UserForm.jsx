@@ -6,7 +6,7 @@ export default function UserForm({
   submit,
   form,
   btnColor,
-  errors,
+  errors = {},
   isConnected,
 }) {
   const location = useLocation();

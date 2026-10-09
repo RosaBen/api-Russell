@@ -4,8 +4,8 @@ import {
   getBooking,
   editBooking,
   deleteBooking,
-} from "../assets/scripts/fetchBookings";
-import BookingCard from "../components/BookingCard";
+} from "../../assets/scripts/fetchBookings";
+import BookingCard from "../../components/dashboard/BookingCard";
 
 export default function Booking({ handleChange, catwaysList }) {
   const [booking, setBooking] = useState(null);

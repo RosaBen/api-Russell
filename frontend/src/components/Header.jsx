@@ -20,6 +20,7 @@ export default function Header({ showMenu, setShowMenu, isConnected }) {
             <Navbar
               onClick={() => setShowMenu(false)}
               isConnected={isConnected}
+              classNav="mobile-nav"
             />
             <button
               onClick={() => setShowMenu(false)}
@@ -30,7 +31,7 @@ export default function Header({ showMenu, setShowMenu, isConnected }) {
           </div>
         </>
       )}
-      <Navbar classDesktop="desktop-nav" isConnected={isConnected} />
+      <Navbar classNav="desktop-nav" isConnected={isConnected} />
     </header>
   );
 }

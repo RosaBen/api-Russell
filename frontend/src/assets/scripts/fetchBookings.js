@@ -27,6 +27,7 @@ export async function getAllBookings () {
   return data;
 }
 
+
 /**
  * get a reservation with a catwayNumber
  *

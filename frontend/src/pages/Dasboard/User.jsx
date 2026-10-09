@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { getUser, editUser, deleteUser } from "../assets/scripts/fetchUsers";
-import UserCard from "../components/UserCard";
+import { getUser, editUser, deleteUser } from "../../assets/scripts/fetchUsers";
+import UserCard from "../../components/dashboard/UserCard";
 
 export default function User({
   handleChange,

@@ -1,4 +1,4 @@
-import UserForm from "../components/UserForm";
+import UserForm from "../components/dashboard/UserForm";
 import { createUser } from "../assets/scripts/fetchUsers";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
